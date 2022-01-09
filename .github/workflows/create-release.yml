@@ -1,0 +1,25 @@
+name: Publish release
+on: create
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    env:
+      GIT_USER: github-actions
+
+    steps:
+      - name: Create release for tag
+        uses: actions/github-script@v5.0.0
+        if: |
+          startsWith(github.ref, 'refs/tags/v') &&
+          github.actor == 'boidolr'
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          script: |
+            const repository = context.repo
+
+            await github.rest.repos.createRelease({
+              owner: repository.owner,
+              repo: repository.repo,
+              tag_name: context.payload.ref,
+            });
