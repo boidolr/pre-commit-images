@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Create release for tag
-        uses: actions/github-script@v5.0.0
+        uses: actions/github-script@v5.1.0
         if: |
           startsWith(github.ref, 'refs/tags/v') &&
           github.actor == 'boidolr'
