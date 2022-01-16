@@ -1,5 +1,5 @@
 ## https://pre-commit.com
-# pre-commit install -t pre-commit -t prepare-commit-msg -t commit-msg
+# pre-commit install -t pre-commit
 #
 # Run hooks on repo:
 # pre-commit run --all-files [hook-id]
@@ -22,6 +22,11 @@ repos:
   #     - id: optimize-png
   #     - id: optimize-svg
   #     - id: optimize-webp
+  # - repo: https://github.com/boidolr/pre-commit-text
+  #   rev: v1.0.0
+  #   hooks:
+  #     - id: pretty-format-yaml
+  #       args: [--preserve-quotes]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
@@ -31,13 +36,10 @@ repos:
       - id: debug-statements
       - id: end-of-file-fixer
       - id: mixed-line-ending
-        files: \.(java|groovy|properties|ts|js|scss|yaml)$
+        files: \.(py|yaml)$
         args: [--fix=lf]
-      - id: no-commit-to-branch
-        args: [--pattern=^release, --branch=develop]
       - id: pretty-format-json
         args: [--autofix, --indent=4, --no-sort-keys]
-      - id: requirements-txt-fixer
       - id: trailing-whitespace
 
   - repo: https://github.com/pre-commit/pygrep-hooks
@@ -50,12 +52,6 @@ repos:
     rev: 3.9.2
     hooks:
       - id: flake8
-
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.5.1
-    hooks:
-      - id: prettier
-        types: [yaml]
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v2.31.0
@@ -89,8 +85,3 @@ repos:
     hooks:
       - id: bandit
         args: [--configfile, .bandit.yaml]
-
-  - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.8.0.3
-    hooks:
-      - id: shellcheck

@@ -75,8 +75,8 @@ endif
 release: test version
 	@echo "Next version: ${NEXT_VERSION}"
 	@sed  -E -e "s/rev: v${CURRENT}/rev: v${NEXT_VERSION}/" -i '' README.md
-	@sed  -E -e "s/version = ${CURRENT}/version = ${NEXT_VERSION}/" -i '' setup.cfg
-	@git add README.md setup.cfg
+	@sed  -E -e "s/VERSION = ${CURRENT}/VERSION = ${NEXT_VERSION}/" -i '' pre_commit_images/__init__.py
+	@git add README.md pre_commit_images/__init__.py
 	git commit -m "Release version ${NEXT_VERSION}" && git tag "v${NEXT_VERSION}"
 
 

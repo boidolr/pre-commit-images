@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 
-from hooks.optimize_png import main
+from pre_commit_images.optimize_png import main
 
 
 def test_compress_png(tmpdir):

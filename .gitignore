@@ -1,4 +1,4 @@
-commit_hooks.egg-info
+*.egg-info
 .pytest_cache
 *.pyc
 .mypy_cache/

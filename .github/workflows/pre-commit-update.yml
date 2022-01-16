@@ -8,36 +8,15 @@ jobs:
   pre-commit-update:
     runs-on: ubuntu-latest
     env:
-      BRANCH: github-action/pre-commit
+      BRANCH: main
 
     steps:
       - uses: actions/checkout@v2
 
-      - uses: boidolr/actions/python-pip-env@main
-
-      - uses: actions/cache@v2.1.7
-        with:
-          path: ~/.cache/pre-commit
-          key: "${{ runner.os }}-pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}"
-
-      - name: Update pre-commit
-        run: |
-          pip install -q pre-commit
-          pre-commit autoupdate
-          pre-commit run --all-files
+      - uses: boidolr/actions/update-precommit@main
 
       - name: Push pre-commit changes
-        id: git-push
         uses: boidolr/actions/git-push@main
         with:
           message: "Update pre-commit config"
-          branch: "${{ env.BRANCH }}"
-
-      - name: Create pre-commit update pull request
-        uses: boidolr/actions/create-pr@main
-        if: >
-          steps.git-push.outputs.pushed-changes == 'true'
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          title: "Update pre-commit config"
           branch: "${{ env.BRANCH }}"

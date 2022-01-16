@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 
-from hooks.optimize_webp import main
+from pre_commit_images.optimize_webp import main
 
 
 def test_compress_webp(tmpdir):

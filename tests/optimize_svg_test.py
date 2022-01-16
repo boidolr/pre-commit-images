@@ -1,7 +1,7 @@
 import shutil
 from pathlib import Path
 
-from hooks.optimize_svg import main
+from pre_commit_images.optimize_svg import main
 
 
 def test_compress_svg(tmpdir):
