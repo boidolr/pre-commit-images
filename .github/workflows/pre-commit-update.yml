@@ -2,7 +2,7 @@ name: "pre-commit update"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "5 7 */7 * *"
+    - cron: "15 7 */7 * *"
 
 jobs:
   pre-commit-update:
