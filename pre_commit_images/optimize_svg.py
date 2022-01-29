@@ -9,7 +9,7 @@ from scour import scour
 
 
 def _optimize_scour(path: Path) -> Path:
-    data = path.read_text()
+    data = path.read_text(encoding="utf-8")
     options = {
         "enable_viewboxing": True,
         "strip_ids": True,
@@ -20,7 +20,7 @@ def _optimize_scour(path: Path) -> Path:
     output = scour.scourString(data, options)
 
     bkp = path.with_suffix(path.suffix + ".bkp")
-    bkp.write_text(output)
+    bkp.write_text(output, encoding="utf-8")
     return bkp
 
 
