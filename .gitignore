@@ -5,3 +5,4 @@
 .eggs
 .venv
 .tox
+build
