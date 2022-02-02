@@ -7,27 +7,25 @@
 # Update repos:
 # pre-commit autoupdate
 ---
-minimum_pre_commit_version: 2.4.0
-default_language_version:
-  python: python3
-default_stages: [commit]
-fail_fast: false
-exclude: ^$
 repos:
-  # - repo: https://github.com/boidolr/pre-commit-images
-  #   rev: v1.0.0
-  #   hooks:
-  #     - id: optimize-avif
-  #     - id: optimize-jpg
-  #     - id: optimize-png
-  #     - id: optimize-svg
-  #     - id: optimize-webp
-  # - repo: https://github.com/boidolr/pre-commit-text
-  #   rev: v1.0.0
-  #   hooks:
-  #     - id: pretty-format-yaml
-  #       args: [--preserve-quotes]
-
+  - repo: https://github.com/boidolr/pre-commit-images
+    rev: v1.0.0
+    hooks:
+      - id: optimize-avif
+        exclude: ^tests
+      - id: optimize-jpg
+        exclude: ^tests
+      - id: optimize-png
+        exclude: ^tests
+      - id: optimize-svg
+        exclude: ^tests
+      - id: optimize-webp
+        exclude: ^tests
+  - repo: https://github.com/boidolr/pre-commit-text
+    rev: v1.0.0
+    hooks:
+      - id: pretty-format-yaml
+        args: [--preserve-quotes]
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.1.0
     hooks:
