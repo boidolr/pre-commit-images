@@ -1,33 +1,33 @@
 - id: optimize-avif
-  name: Optimize avifs
+  name: optimize avifs
   description: Check whether avifs can be reencoded to decrease file size.
   language: python
   entry: optimize-avif
   types: [avif]
 
 - id: optimize-jpg
-  name: Optimize jpgs
+  name: optimize jpgs
   description: Check whether jpgs can be reencoded to decrease file size.
   language: python
   entry: optimize-jpg
   types: [jpeg]
 
 - id: optimize-png
-  name: Optimize pngs
+  name: Ootimize pngs
   description: Check whether pngs can be reencoded to decrease file size.
   language: python
   entry: optimize-png
   types: [png]
 
 - id: optimize-svg
-  name: Optimize svgs
+  name: optimize svgs
   description: Check whether svgs can be stripped to decrease file size.
   language: python
   entry: optimize-svg
   types: [svg]
 
 - id: optimize-webp
-  name: Optimize webps
+  name: optimize webps
   description: Check whether webps can be reencoded to decrease file size.
   language: python
   entry: optimize-webp
