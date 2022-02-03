@@ -13,7 +13,7 @@
     types: [jpeg]
 
   - id: optimize-png
-    name: Ootimize pngs
+    name: optimize pngs
     description: Check whether pngs can be reencoded to decrease file size.
     language: python
     entry: optimize-png
