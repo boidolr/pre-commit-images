@@ -8,28 +8,7 @@ from typing import Sequence
 import pillow_avif  # noqa: F401
 from PIL import Image
 
-
-def _pillow(path: Path, qmin: int, qmax: int, effort: int) -> Path:
-    bkp = path.with_suffix(path.suffix + ".bkp")
-    im = Image.open(path)
-    im.save(bkp, format=im.format, speed=effort, qmin=qmin, qmax=qmax)
-    return bkp
-
-
-def optimize_avif(path: str, threshold: int, qmin: int, qmax: int, effort: int) -> None:
-    fp = Path(path)
-
-    output = _pillow(fp, qmin, qmax, effort)
-
-    original_size = fp.stat().st_size
-    diff = original_size - output.stat().st_size
-    if diff > threshold:
-        output.replace(fp)
-        print(
-            f"Optimized {path} by {diff} of {original_size} bytes ({diff/original_size:.2%})"
-        )
-    else:
-        output.unlink()
+from .optimizer import _optimize_images
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
@@ -65,18 +44,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    ret = 0
-    for file in args.filenames:
-        try:
-            optimize_avif(file, args.threshold, args.qmin, args.qmax, args.effort)
-        except Exception as exc:
-            print(
-                f"Failed optimization for {file} ({exc})",
-                file=sys.stderr,
-            )
-            ret = 1
+    def optimize(path: Path) -> Path:
+        bkp = path.with_suffix(path.suffix + ".bkp")
+        im = Image.open(path)
+        im.save(
+            bkp, format=im.format, speed=args.effort, qmin=args.qmin, qmax=args.qmax
+        )
+        return bkp
 
-    return ret
+    success = _optimize_images(args.filenames, optimize, args.threshold)
+    return 0 if success else 1
 
 
 if __name__ == "__main__":

@@ -7,27 +7,7 @@ from typing import Sequence
 
 from PIL import Image
 
-
-def _optimize_pillow(path: Path, lossless: bool, quality: int) -> Path:
-    bkp = path.with_suffix(path.suffix + ".bkp")
-    im = Image.open(path)
-    im.save(bkp, format=im.format, lossless=lossless, method=6, quality=quality)
-    return bkp
-
-
-def optimize_webp(path: str, threshold: int, lossless: bool, quality: int) -> None:
-    fp = Path(path)
-    output = _optimize_pillow(fp, lossless, quality)
-
-    original_size = fp.stat().st_size
-    diff = original_size - output.stat().st_size
-    if diff > threshold:
-        output.replace(fp)
-        print(
-            f"Optimized {path} by {diff} of {original_size} bytes ({diff/original_size:.2%})"
-        )
-    else:
-        output.unlink()
+from .optimizer import _optimize_images
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
@@ -56,18 +36,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    ret = 0
-    for file in args.filenames:
-        try:
-            optimize_webp(file, args.threshold, args.lossless, args.quality)
-        except Exception as exc:
-            print(
-                f"Failed optimization for {file} ({exc})",
-                file=sys.stderr,
-            )
-            ret = 1
+    def optimize(path: Path) -> Path:
+        bkp = path.with_suffix(path.suffix + ".bkp")
+        im = Image.open(path)
+        im.save(
+            bkp,
+            format=im.format,
+            lossless=args.lossless,
+            method=6,
+            quality=args.quality,
+        )
+        return bkp
 
-    return ret
+    success = _optimize_images(args.filenames, optimize, args.threshold)
+    return 0 if success else 1
 
 
 if __name__ == "__main__":

@@ -7,36 +7,7 @@ from typing import Sequence
 
 from scour import scour
 
-
-def _optimize_scour(path: Path) -> Path:
-    data = path.read_text(encoding="utf-8")
-    options = {
-        "enable_viewboxing": True,
-        "strip_ids": True,
-        "strip_comments": True,
-        "shorten_ids": True,
-        "indent_type": "none",
-    }
-    output = scour.scourString(data, options)
-
-    bkp = path.with_suffix(path.suffix + ".bkp")
-    bkp.write_text(output, encoding="utf-8")
-    return bkp
-
-
-def optimize_svg(path: str, threshold: int) -> None:
-    fp = Path(path)
-    output = _optimize_scour(fp)
-
-    original_size = fp.stat().st_size
-    diff = original_size - output.stat().st_size
-    if diff > threshold:
-        output.replace(fp)
-        print(
-            f"Optimized {path} by {diff} of {original_size} bytes ({diff/original_size:.2%})"
-        )
-    else:
-        output.unlink()
+from .optimizer import _optimize_images
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
@@ -51,18 +22,23 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    ret = 0
-    for file in args.filenames:
-        try:
-            optimize_svg(file, args.threshold)
-        except Exception as exc:
-            print(
-                f"Failed optimization for {file} ({exc})",
-                file=sys.stderr,
-            )
-            ret = 1
+    def optimize(path: Path) -> Path:
+        data = path.read_text(encoding="utf-8")
+        options = {
+            "enable_viewboxing": True,
+            "strip_ids": True,
+            "strip_comments": True,
+            "shorten_ids": True,
+            "indent_type": "none",
+        }
+        output = scour.scourString(data, options)
 
-    return ret
+        bkp = path.with_suffix(path.suffix + ".bkp")
+        bkp.write_text(output, encoding="utf-8")
+        return bkp
+
+    success = _optimize_images(args.filenames, optimize, args.threshold)
+    return 0 if success else 1
 
 
 if __name__ == "__main__":
