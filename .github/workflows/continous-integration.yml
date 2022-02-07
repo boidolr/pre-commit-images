@@ -27,5 +27,5 @@ jobs:
 
       - name: Execute tests
         run: |
-          pip install -q tox
+          pip3 install -q tox
           tox -e py
