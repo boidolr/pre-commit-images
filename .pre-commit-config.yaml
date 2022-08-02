@@ -48,8 +48,8 @@ repos:
       - id: python-use-type-annotations
       - id: rst-backticks
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.9.2
+  - repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
     hooks:
       - id: flake8
 
@@ -66,7 +66,7 @@ repos:
         args: [--py37-plus]
 
   - repo: https://github.com/asottile/setup-cfg-fmt
-    rev: v1.20.2
+    rev: v2.0.0
     hooks:
       - id: setup-cfg-fmt
 
