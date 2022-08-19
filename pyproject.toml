@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pre_commit_images"
+description = "Some image optimization hooks for pre-commit."
+authors = [
+  { name="Raphael Boidol", email="boidolr@users.noreply.github.com" },
+]
+urls = {"Respository" = "https://github.com/boidolr/pre-commit-images"}
+license = {file = "LICENSE"}
+readme = "README.md"
+dynamic = ["version"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: CPython",
+]
+
+requires-python = ">=3.7"
+dependencies = [
+    "pillow==9.2.0",
+    "pillow-avif-plugin==1.2.2",
+    "scour==0.38.2",
+]
+
+[project.optional-dependencies]
+dev = ["tox", "tox-pyenv"]
+tests = [
+    "black",
+    "flake8<5",
+    "pre-commit",
+    "pytest",
+    "pytest-clarity",
+    "pytest-flake8",
+    "pytest-mypy",
+]
+
+[project.scripts]
+optimize-avif = "pre_commit_images.optimize_avif:main"
+optimize-jpg = "pre_commit_images.optimize_jpg:main"
+optimize-png = "pre_commit_images.optimize_png:main"
+optimize-svg = "pre_commit_images.optimize_svg:main"
+optimize-webp = "pre_commit_images.optimize_webp:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "pre_commit_images.VERSION"}
+
+[tool.setuptools]
+packages = ["pre_commit_images"]
+
+[tool.black]
+target-version = ['py37']
+line-length = 120
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "--flake8 --mypy"
+filterwarnings = [
+    "error",
+    "ignore:SelectableGroups dict interface is deprecated::flake8",
+]
+
+[[tool.mypy.overrides]]
+module = "tests"
+disallow_untyped_defs = false
