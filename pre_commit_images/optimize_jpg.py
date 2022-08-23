@@ -32,9 +32,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     def optimize(path: Path) -> Path:
         bkp = path.with_suffix(path.suffix + ".bkp")
         im = Image.open(path)
-        im.save(
-            bkp, format=im.format, optimize=True, progressive=True, quality=args.quality
-        )
+        im.save(bkp, format=im.format, optimize=True, progressive=True, quality=args.quality)
         return bkp
 
     success = _optimize_images(args.filenames, optimize, args.threshold)

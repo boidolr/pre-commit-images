@@ -4,9 +4,7 @@ from typing import Callable
 from typing import Iterable
 
 
-def _optimize_images(
-    images: Iterable[str], optimizer_fn: Callable[[Path], Path], threshold: int
-) -> bool:
+def _optimize_images(images: Iterable[str], optimizer_fn: Callable[[Path], Path], threshold: int) -> bool:
     def bytes_to_readable(file_size: int) -> str:
         if file_size / (1024 * 1024) > 1:
             return f"{file_size / (1024 * 1024):.2f}Mb"
@@ -25,9 +23,7 @@ def _optimize_images(
             output.replace(fp)
             readable_diff = bytes_to_readable(diff)
             readable_size = bytes_to_readable(original_size)
-            print(
-                f"Optimized {path} by {readable_diff} of {readable_size} ({diff/original_size:.2%})"
-            )
+            print(f"Optimized {path} by {readable_diff} of {readable_size} ({diff/original_size:.2%})")
         else:
             output.unlink()
 
