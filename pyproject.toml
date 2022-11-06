@@ -19,7 +19,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 dependencies = [
     "pillow==9.2.0",
     "pillow-avif-plugin==1.2.2",
@@ -27,14 +27,16 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["tox", "tox-pyenv"]
-tests = [
+dev = [
     "black",
-    "flake8<5",
+    "flake8",
     "pre-commit",
+    "tox",
+    "tox-pyenv",
+]
+tests = [
     "pytest",
     "pytest-clarity",
-    "pytest-flake8",
     "pytest-mypy",
 ]
 
@@ -52,7 +54,7 @@ version = {attr = "pre_commit_images.VERSION"}
 packages = ["pre_commit_images"]
 
 [tool.black]
-target-version = ['py37']
+target-version = ["py38"]
 line-length = 120
 
 [tool.mypy]
@@ -64,10 +66,10 @@ no_implicit_optional = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--flake8 --mypy"
+addopts = "--mypy"
 filterwarnings = [
     "error",
-    "ignore:SelectableGroups dict interface is deprecated::flake8",
+    "ignore:path is deprecated:DeprecationWarning",
 ]
 
 [[tool.mypy.overrides]]
