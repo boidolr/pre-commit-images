@@ -29,3 +29,9 @@ jobs:
         run: |
           pip3 install -q tox
           tox -e py
+
+  precommit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: boidolr/actions/run-precommit@main
