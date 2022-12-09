@@ -1,7 +1,7 @@
 pre-commit-images [![tag](https://img.shields.io/github/v/tag/boidolr/pre-commit-images?sort=semver)](https://github.com/boidolr/pre-commit-images/tags) [![Build](https://github.com/boidolr/pre-commit-images/actions/workflows/continous-integration.yml/badge.svg)](https://github.com/boidolr/pre-commit-images/actions/workflows/continous-integration.yml) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 ================
 
-A collection of git hooks for use with the [pre-commit](https://github.com/pre-commit/pre-commit) framework. For details see the list of available hooks below.
+Git hooks to optimize images based on the [pre-commit](https://github.com/pre-commit/pre-commit) framework. For supported image formats see the list of available hooks below.
 
 ## Using pre-commit-images with pre-commit
 
