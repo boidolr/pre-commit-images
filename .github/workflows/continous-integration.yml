@@ -11,6 +11,10 @@ on:
     - cron: "15 7 */9 * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   build:
     strategy:
