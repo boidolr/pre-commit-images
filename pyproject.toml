@@ -21,7 +21,7 @@ classifiers = [
 
 requires-python = ">=3.8"
 dependencies = [
-    "pillow==9.3.0",
+    "pillow==9.4.0",
     "pillow-avif-plugin==1.3.1",
     "scour==0.38.2",
 ]
@@ -69,7 +69,6 @@ ignore_missing_imports = true
 addopts = "--mypy"
 filterwarnings = [
     "error",
-    "ignore:path is deprecated:DeprecationWarning",
 ]
 
 [[tool.mypy.overrides]]

@@ -16,7 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: boidolr/actions/update-precommit@main
+      - uses: boidolr/actions/run-precommit@main
+        with:
+          autoupdate: true
 
       - name: Push pre-commit changes
         uses: boidolr/actions/git-push@main
