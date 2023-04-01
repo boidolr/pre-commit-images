@@ -8,7 +8,7 @@ Git hooks to optimize images based on the [pre-commit](https://github.com/pre-co
 Add this to your `.pre-commit-config.yaml`:
 ```
     -   repo: https://github.com/boidolr/pre-commit-images
-        rev: v1.1.1  # Use the ref you want to point at
+        rev: v1.1.2  # Use the ref you want to point at
         hooks:
         -   id: optimize-png
         # -   id: ...
