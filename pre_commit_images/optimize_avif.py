@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import argparse
 import sys
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Optional
-from typing import Sequence
 
 import pillow_avif  # noqa: F401
 from PIL import Image

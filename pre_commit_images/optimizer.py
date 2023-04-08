@@ -1,7 +1,7 @@
 import sys
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Callable
-from typing import Iterable
 
 
 def _optimize_images(images: Iterable[str], optimizer_fn: Callable[[Path], Path], threshold: int) -> bool:
