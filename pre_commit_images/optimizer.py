@@ -1,10 +1,12 @@
 import sys
 from collections.abc import Iterable
 from pathlib import Path
+from tempfile import TemporaryFile
 from typing import Callable
+from typing import IO
 
 
-def _optimize_images(images: Iterable[str], optimizer_fn: Callable[[Path], Path], threshold: int) -> bool:
+def _optimize_images(images: Iterable[str], optimizer_fn: Callable[[Path, IO[bytes]], None], threshold: int) -> bool:
     def bytes_to_readable(file_size: int) -> str:
         if file_size / (1024 * 1024) > 1:
             return f"{file_size / (1024 * 1024):.2f}Mb"
@@ -13,24 +15,25 @@ def _optimize_images(images: Iterable[str], optimizer_fn: Callable[[Path], Path]
         else:
             return f"{file_size}b"
 
-    def optimize_single_image(path: str) -> None:
-        fp = Path(path)
-        output = optimizer_fn(fp)
+    def optimize_single_image(source: Path, temp: IO[bytes]) -> None:
+        optimizer_fn(source, temp)
 
-        original_size = fp.stat().st_size
-        diff = original_size - output.stat().st_size
+        source_size = source.stat().st_size
+        diff = source_size - temp.tell()
+
         if diff > threshold:
-            output.replace(fp)
+            temp.seek(0)
+            source.write_bytes(temp.read())
+
             readable_diff = bytes_to_readable(diff)
-            readable_size = bytes_to_readable(original_size)
-            print(f"Optimized {path} by {readable_diff} of {readable_size} ({diff/original_size:.2%})")
-        else:
-            output.unlink()
+            readable_size = bytes_to_readable(source_size)
+            print(f"Optimized {str(source)} by {readable_diff} of {readable_size} ({diff/source_size:.2%})")
 
     ret = True
     for image in images:
         try:
-            optimize_single_image(image)
+            with TemporaryFile() as temp:
+                optimize_single_image(Path(image), temp)
         except Exception as exc:
             print(
                 f"Failed optimization for {image} ({exc})",

@@ -3,6 +3,7 @@ import argparse
 import sys
 from collections.abc import Sequence
 from pathlib import Path
+from typing import IO
 from typing import Optional
 
 from PIL import Image
@@ -36,17 +37,15 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    def optimize(path: Path) -> Path:
-        bkp = path.with_suffix(path.suffix + ".bkp")
-        im = Image.open(path)
+    def optimize(source: Path, target: IO[bytes]) -> None:
+        im = Image.open(source)
         im.save(
-            bkp,
+            target,
             format=im.format,
             lossless=args.lossless,
             method=6,
             quality=args.quality,
         )
-        return bkp
 
     success = _optimize_images(args.filenames, optimize, args.threshold)
     return 0 if success else 1

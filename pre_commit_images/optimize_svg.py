@@ -3,6 +3,7 @@ import argparse
 import sys
 from collections.abc import Sequence
 from pathlib import Path
+from typing import IO
 from typing import Optional
 
 from scour import scour
@@ -22,8 +23,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    def optimize(path: Path) -> Path:
-        data = path.read_text(encoding="utf-8")
+    def optimize(source: Path, target: IO[bytes]) -> None:
+        data = source.read_text(encoding="utf-8")
         options = {
             "enable_viewboxing": True,
             "strip_ids": True,
@@ -33,9 +34,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         }
         output = scour.scourString(data, options)
 
-        bkp = path.with_suffix(path.suffix + ".bkp")
-        bkp.write_text(output, encoding="utf-8")
-        return bkp
+        target.write(output.encode("utf-8"))
 
     success = _optimize_images(args.filenames, optimize, args.threshold)
     return 0 if success else 1
