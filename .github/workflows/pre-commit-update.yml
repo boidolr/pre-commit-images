@@ -14,7 +14,7 @@ jobs:
       BRANCH: main
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: boidolr/actions/run-precommit@main
         with:
