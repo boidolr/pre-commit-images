@@ -28,7 +28,6 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "black",
     "pre-commit",
     "ruff",
     "tox",
@@ -53,9 +52,6 @@ version = {attr = "pre_commit_images.VERSION"}
 
 [tool.setuptools]
 packages = ["pre_commit_images"]
-
-[tool.black]
-line-length = 120
 
 [tool.ruff]
 line-length = 120
