@@ -23,13 +23,13 @@ repos:
         exclude: ^tests
 
   - repo: https://github.com/boidolr/pre-commit-text
-    rev: v1.2.6
+    rev: v1.2.7
     hooks:
       - id: pretty-format-yaml
         args: [--preserve-quotes]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-merge-conflict
       - id: check-yaml
@@ -41,7 +41,7 @@ repos:
         args: [--autofix, --indent=4, --no-sort-keys]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.291
+    rev: v0.0.292
     hooks:
       - id: ruff
         args: [--fix]
