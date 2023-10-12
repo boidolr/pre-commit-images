@@ -45,7 +45,7 @@ check: venv
 ## format        : Format code.
 .PHONY: format
 format: venv
-	$(VENV)/black -q .
+	$(VENV)/ruff format -q .
 
 
 ## test          : Execute tests.
