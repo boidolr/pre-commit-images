@@ -23,5 +23,5 @@ jobs:
       - name: Push pre-commit changes
         uses: boidolr/actions/git-push@main
         with:
-          message: "Update pre-commit config"
+          message: "chore: update pre-commit config"
           branch: "${{ env.BRANCH }}"

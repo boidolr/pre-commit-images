@@ -3,6 +3,7 @@
         "config:base",
         ":disableDependencyDashboard",
         ":automergePr",
-        ":automergeMinor"
+        ":automergeMinor",
+        ":semanticCommitTypeAll(chore)"
     ]
 }
