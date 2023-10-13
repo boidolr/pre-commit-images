@@ -20,7 +20,7 @@ def image(tmpdir, original_image):
 
 def test_qmin_qmax_deprecated(image):
     with pytest.deprecated_call():
-        assert main(("-min", "10", str(image))) == 0
+        assert main(("-min", "0", str(image))) == 0
 
 
 def test_qmin_qmax_and_quality(image):

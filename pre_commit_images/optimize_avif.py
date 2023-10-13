@@ -51,20 +51,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    if not args.qmin and not args.qmax and not args.quality:
+    if args.qmin is None and args.qmax is None and args.quality is None:
         args.quality = 75
 
-    if args.qmin and args.quality or args.qmax and args.quality:
+    if args.quality is not None and (args.qmin is not None or args.qmax is not None):
         sys.exit("Can not use both `qmin`/`qmax` and `quality`")
 
-    if args.qmin or args.qmax:
+    if args.qmin is not None or args.qmax is not None:
         warnings.warn(
             "`qmin`/`qmax` are deprecated, use `quality` instead"
             " - it will be the only option for future AVIF versions",
             category=DeprecationWarning,
         )
 
-    options = {option: value for option, value in vars(args).items() if value}
+    options = {option: value for option, value in vars(args).items() if value is not None}
 
     def optimize(source: Path, target: IO[bytes]) -> None:
         im = Image.open(source)
