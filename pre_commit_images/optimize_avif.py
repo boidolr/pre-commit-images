@@ -39,7 +39,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         "--quality",
         default=None,
         type=int,
-        help="Quality to use for AVIF images (default: 75 - from 0 down to 100)",
+        help="Quality to use for AVIF images (default: 75 - from 0 up to 100)",
     )
     parser.add_argument(
         "-e",
