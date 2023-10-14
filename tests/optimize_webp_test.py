@@ -1,14 +1,22 @@
+import pathlib
 import shutil
-from pathlib import Path
+
+import pytest
 
 from pre_commit_images.optimize_webp import main
 
 
-def test_compress_webp(tmpdir):
+@pytest.fixture
+def images(tmpdir):
     image = "test.webp"
-    path = Path(tmpdir) / image
-    test_file = Path(__file__).parent / image
+    path = pathlib.Path(tmpdir) / image
+    test_file = pathlib.Path(__file__).parent / image
     shutil.copy(test_file, path)
+    return path, test_file
+
+
+def test_compress_webp(images):
+    path, test_file = images
 
     assert (
         main(
@@ -23,11 +31,8 @@ def test_compress_webp(tmpdir):
     assert test_file.stat().st_size > path.stat().st_size
 
 
-def test_compress_webp_below_threshold(tmpdir):
-    image = "test.webp"
-    path = Path(tmpdir) / image
-    test_file = Path(__file__).parent / image
-    shutil.copy(test_file, path)
+def test_compress_webp_below_threshold(images):
+    path, test_file = images
 
     assert (
         main(

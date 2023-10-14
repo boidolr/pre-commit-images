@@ -1,5 +1,5 @@
+import pathlib
 import shutil
-from pathlib import Path
 
 import pytest
 
@@ -7,35 +7,35 @@ from pre_commit_images.optimize_avif import main
 
 
 @pytest.fixture
-def original_image(tmpdir):
-    return Path(__file__).parent / "test.avif"
+def images(tmpdir):
+    test_file = pathlib.Path(__file__).parent / "test.avif"
+    path = pathlib.Path(tmpdir) / "test.avif"
+    shutil.copy(test_file, path)
+    return path, test_file
 
 
-@pytest.fixture
-def image(tmpdir, original_image):
-    path = Path(tmpdir) / "test.avif"
-    shutil.copy(original_image, path)
-    return path
-
-
-def test_qmin_qmax_deprecated(image):
+def test_qmin_qmax_deprecated(images):
+    path, _ = images
     with pytest.deprecated_call():
-        assert main(("-min", "0", str(image))) == 0
+        assert main(("-min", "0", str(path))) == 0
 
 
-def test_qmin_qmax_and_quality(image):
+def test_qmin_qmax_and_quality(images):
+    path, _ = images
     with pytest.raises(SystemExit) as wrapped_exit:
-        assert main(("-min", "10", "--quality", "20", str(image))) == 1
+        assert main(("-min", "10", "--quality", "20", str(path))) == 1
         assert wrapped_exit.type == SystemExit
         assert wrapped_exit.value.code == 1
 
 
-def test_compress_avif(original_image, image):
-    assert main(("--quality", "75", "-e", "0", str(image))) == 0
-    assert original_image.stat().st_size > image.stat().st_size
+def test_compress_avif(images):
+    path, test_file = images
+    assert main(("--quality", "75", "-e", "0", str(path))) == 0
+    assert test_file.stat().st_size > path.stat().st_size
 
 
-def test_compress_avif_below_threshold(original_image, image):
+def test_compress_avif_below_threshold(images):
+    path, test_file = images
     assert (
         main(
             (
@@ -45,9 +45,9 @@ def test_compress_avif_below_threshold(original_image, image):
                 "10",
                 "-t",
                 "6144",
-                str(image),
+                str(path),
             )
         )
         == 0
     )
-    assert original_image.stat().st_size == image.stat().st_size
+    assert test_file.stat().st_size == path.stat().st_size

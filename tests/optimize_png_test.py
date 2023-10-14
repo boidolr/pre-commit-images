@@ -1,24 +1,29 @@
+import pathlib
 import shutil
-from pathlib import Path
+
+import pytest
 
 from pre_commit_images.optimize_png import main
 
 
-def test_compress_png(tmpdir):
+@pytest.fixture
+def images(tmpdir):
     image = "test.png"
-    path = Path(tmpdir) / image
-    test_file = Path(__file__).parent / image
+    path = pathlib.Path(tmpdir) / image
+    test_file = pathlib.Path(__file__).parent / image
     shutil.copy(test_file, path)
+    return path, test_file
+
+
+def test_compress_png(images):
+    path, test_file = images
 
     assert main((str(path),)) == 0
     assert test_file.stat().st_size > path.stat().st_size
 
 
-def test_compress_png_below_threshold(tmpdir):
-    image = "test.png"
-    path = Path(tmpdir) / image
-    test_file = Path(__file__).parent / image
-    shutil.copy(test_file, path)
+def test_compress_png_below_threshold(images):
+    path, test_file = images
 
     assert (
         main(
