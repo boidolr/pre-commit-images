@@ -6,7 +6,7 @@ import pytest
 from pre_commit_images.optimize_jpg import main
 
 
-@pytest.fixture
+@pytest.fixture()
 def images(tmpdir):
     image = "test.jpg"
     path = pathlib.Path(tmpdir) / image

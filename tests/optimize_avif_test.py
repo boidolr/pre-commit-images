@@ -6,7 +6,7 @@ import pytest
 from pre_commit_images.optimize_avif import main
 
 
-@pytest.fixture
+@pytest.fixture()
 def images(tmpdir):
     test_file = pathlib.Path(__file__).parent / "test.avif"
     path = pathlib.Path(tmpdir) / "test.avif"
@@ -24,8 +24,8 @@ def test_qmin_qmax_and_quality(images):
     path, _ = images
     with pytest.raises(SystemExit) as wrapped_exit:
         assert main(("-min", "10", "--quality", "20", str(path))) == 1
-        assert wrapped_exit.type == SystemExit
-        assert wrapped_exit.value.code == 1
+    assert wrapped_exit.type == SystemExit
+    assert wrapped_exit.value.code == "Can not use both `qmin`/`qmax` and `quality`"
 
 
 def test_compress_avif(images):

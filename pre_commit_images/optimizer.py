@@ -34,7 +34,7 @@ def _optimize_images(images: Iterable[str], optimizer_fn: Callable[[Path, IO[byt
         try:
             with TemporaryFile() as temp:
                 optimize_single_image(Path(image), temp)
-        except Exception as exc:
+        except Exception as exc:  # noqa: PERF203
             print(
                 f"Failed optimization for {image} ({exc})",
                 file=sys.stderr,

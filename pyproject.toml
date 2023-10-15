@@ -68,8 +68,18 @@ select = [
     "S",
     # flake8-comprehensions
     "C4",
+    # flake8-logging-format
+    "G",
     # flake8-annotations
     "ANN",
+    # flake8-simplify
+    "SIM",
+    # flake8-pytest-style
+    "PT",
+    # flake8-tidy-imports (relative-imports)
+    "TID252",
+    # Perflint
+    "PERF",
     # flynt
     "FLY",
     # isort
