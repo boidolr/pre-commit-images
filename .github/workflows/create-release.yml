@@ -13,6 +13,8 @@ jobs:
 
     steps:
       - name: Create release for tag
-        run: gh release create "${{ github.ref }}"
+        run: |
+          TAG=$(echo "${{ github.ref }" | cut -c 11-)
+          gh release create --verify-tag --generate-notes "$TAG"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
