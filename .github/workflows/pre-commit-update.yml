@@ -2,26 +2,37 @@ name: "pre-commit update"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "15 7 */7 * *"
+    - cron: "15 7 */9 * *"
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   pre-commit-update:
     runs-on: ubuntu-latest
-    env:
-      BRANCH: main
 
     steps:
-      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
+      - name: Checkout
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4
 
-      - uses: boidolr/actions/run-precommit@main
+      - name: Update pre-commit
+        uses: boidolr/actions/run-precommit@main
         with:
           autoupdate: true
 
       - name: Push pre-commit changes
+        id: push
         uses: boidolr/actions/git-push@main
         with:
           message: "chore: update pre-commit config"
-          branch: "${{ env.BRANCH }}"
+          branch: pre-commit-update
+
+      - name: Create pull request
+        if: ${{ steps.push.outputs.pushed-changes == 'true' }}
+        run: |
+          gh pr create --base main --head pre-commit-update \
+            --title "chore: update pre-commit config" --body "automated update"
+          # gh pr merge --admin --rebase pre-commit-update
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
