@@ -4,6 +4,7 @@
     language: python
     entry: optimize-avif
     types: [avif]
+    additional_dependencies: [".[avif]"]
 
   - id: optimize-jpg
     name: optimize jpgs
@@ -25,6 +26,7 @@
     language: python
     entry: optimize-svg
     types: [svg]
+    additional_dependencies: [".[svg]"]
 
   - id: optimize-webp
     name: optimize webps

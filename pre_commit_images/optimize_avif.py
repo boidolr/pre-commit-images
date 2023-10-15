@@ -6,10 +6,15 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import IO
 
-import pillow_avif  # noqa: F401
 from PIL import Image
 
 from .optimizer import _optimize_images
+
+try:
+    import pillow_avif  # noqa: F401
+except ImportError:
+    warnings.warn('Missing `pillow_avif` dependency, install optional "[avif]" dependency group')
+    sys.exit(1)
 
 
 def main(argv: Sequence[str] | None = None) -> int:

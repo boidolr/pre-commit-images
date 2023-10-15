@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 import argparse
+import pathlib
 import sys
+import warnings
 from collections.abc import Sequence
-from pathlib import Path
 from typing import IO
 
-from scour import scour
-
 from .optimizer import _optimize_images
+
+try:
+    from scour import scour
+except ImportError:
+    warnings.warn('Missing `scour` dependency, install optional "[svg]" dependency group')
+    sys.exit(1)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -22,7 +27,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    def optimize(source: Path, target: IO[bytes]) -> None:
+    def optimize(source: pathlib.Path, target: IO[bytes]) -> None:
         data = source.read_text(encoding="utf-8")
         options = {
             "enable_viewboxing": True,

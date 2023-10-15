@@ -22,11 +22,15 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "pillow==10.1.0",
-    "pillow-avif-plugin==1.4.1",
-    "scour==0.38.2",
 ]
 
 [project.optional-dependencies]
+avif = [
+    "pillow-avif-plugin==1.4.1",
+]
+svg = [
+    "scour==0.38.2",
+]
 dev = [
     "pre-commit",
     "ruff",
