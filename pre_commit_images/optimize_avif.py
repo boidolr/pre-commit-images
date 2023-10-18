@@ -5,7 +5,6 @@ import warnings
 from collections.abc import Sequence
 from pathlib import Path
 from typing import IO
-from typing import Optional
 
 import pillow_avif  # noqa: F401
 from PIL import Image
@@ -13,7 +12,7 @@ from PIL import Image
 from .optimizer import _optimize_images
 
 
-def main(argv: Optional[Sequence[str]] = None) -> int:
+def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("filenames", nargs="*", help="Files to optimize.")
     parser.add_argument(

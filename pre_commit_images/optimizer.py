@@ -1,8 +1,8 @@
 import sys
+from collections.abc import Callable
 from collections.abc import Iterable
 from pathlib import Path
 from tempfile import TemporaryFile
-from typing import Callable
 from typing import IO
 
 
