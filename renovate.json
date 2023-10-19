@@ -1,9 +1,7 @@
 {
     "extends": [
-        "config:best-practices",
-        ":disableDependencyDashboard",
-        ":automergePr",
-        ":automergeMinor",
-        ":semanticCommitTypeAll(chore)"
+        "github>boidolr/actions",
+        "github>boidolr/actions//presets/actions",
+        "github>boidolr/actions//presets/precommit"
     ]
 }
