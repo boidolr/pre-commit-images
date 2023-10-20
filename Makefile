@@ -77,7 +77,7 @@ release: test version
 	@sed  -E -e "s/rev: v${CURRENT}/rev: v${NEXT_VERSION}/" -i '' README.md
 	@sed  -E -e "s/VERSION = \"${CURRENT}\"/VERSION = \"${NEXT_VERSION}\"/" -i '' pre_commit_images/__init__.py
 	@git add README.md pre_commit_images/__init__.py
-	git commit -m "Release version ${NEXT_VERSION}" && git tag "v${NEXT_VERSION}"
+	git commit -m "chore: release version ${NEXT_VERSION}" && git tag "v${NEXT_VERSION}"
 
 
 ## release-patch : Increase patch version in files, commit and tag with git.
