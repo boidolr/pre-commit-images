@@ -1,4 +1,8 @@
-pre-commit-images [![tag](https://img.shields.io/github/v/tag/boidolr/pre-commit-images?sort=semver)](https://github.com/boidolr/pre-commit-images/tags) [![Build](https://github.com/boidolr/pre-commit-images/actions/workflows/continous-integration.yml/badge.svg)](https://github.com/boidolr/pre-commit-images/actions/workflows/continous-integration.yml) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+pre-commit-images
+[![tag](https://img.shields.io/github/v/tag/boidolr/pre-commit-images?sort=semver)](https://github.com/boidolr/pre-commit-images/tags)
+![python](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fboidolr%2Fpre-commit-images%2Fmain%2Fpyproject.toml)
+[![Build](https://github.com/boidolr/pre-commit-images/actions/workflows/continous-integration.yml/badge.svg)](https://github.com/boidolr/pre-commit-images/actions/workflows/continous-integration.yml)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 ================
 
 Git hooks to optimize images based on the [pre-commit](https://github.com/pre-commit/pre-commit) framework. For supported image formats see the list of available hooks below.
