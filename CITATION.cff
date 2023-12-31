@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Boidol"
+  given-names: "Raphael"
+title: "pre-commit-images"
+abstract: >-
+  pre-commit-images will optimize images for size before they are checked in.
+license: MIT
+license-url: "https://github.com/boidolr/pre-commit-images/blob/main/LICENSE"
+repository-code: "https://github.com/boidolr/pre-commit-images"
+url: "https://github.com/boidolr/pre-commit-images"
