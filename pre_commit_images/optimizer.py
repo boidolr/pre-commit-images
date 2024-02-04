@@ -10,10 +10,11 @@ def _optimize_images(images: Iterable[str], optimizer_fn: Callable[[Path, IO[byt
     def bytes_to_readable(file_size: int) -> str:
         if file_size / (1024 * 1024) > 1:
             return f"{file_size / (1024 * 1024):.2f}Mb"
-        elif file_size / (1024) > 1:
+
+        if file_size / (1024) > 1:
             return f"{(file_size/1024):.2f}Kb"
-        else:
-            return f"{file_size}b"
+
+        return f"{file_size}b"
 
     def optimize_single_image(source: Path, temp: IO[bytes]) -> None:
         optimizer_fn(source, temp)
