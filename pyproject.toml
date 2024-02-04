@@ -60,6 +60,8 @@ packages = ["pre_commit_images"]
 [tool.ruff]
 line-length = 120
 fix = true
+
+[tool.ruff.lint]
 select = [
     # Pyflakes
     "F",
@@ -68,6 +70,8 @@ select = [
     "W",
     # pyupgrade
     "UP",
+    # refurb
+    "FURB",
     # flake8-bandit
     "S",
     # flake8-comprehensions
@@ -80,6 +84,10 @@ select = [
     "SIM",
     # flake8-pytest-style
     "PT",
+    # flake8-return
+    "RET",
+    # flake8-use-pathlib
+    "PTH",
     # flake8-tidy-imports (relative-imports)
     "TID252",
     # Perflint
@@ -92,13 +100,13 @@ select = [
     "RUF100"
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "tests/*.py" = ["S101"]
 
-[tool.ruff.flake8-annotations]
+[tool.ruff.lint.flake8-annotations]
 ignore-fully-untyped = true
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 force-single-line = true
 order-by-type = false
 
