@@ -9,7 +9,7 @@
 ---
 repos:
   - repo: https://github.com/boidolr/pre-commit-images
-    rev: v1.5.1
+    rev: v1.5.2
     hooks:
       - id: optimize-avif
         exclude: ^tests
