@@ -28,20 +28,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         help="Minimum improvement to replace file in bytes (default: %(default)s)",
     )
     parser.add_argument(
-        "-min",
-        "--qmin",
-        type=int,
-        help="Deprecated: use `quality` instead.",
-    )
-    parser.add_argument(
-        "-max",
-        "--qmax",
-        type=int,
-        help="Deprecated: use `quality` instead.",
-    )
-    parser.add_argument(
         "--quality",
-        default=None,
+        default=75,
         type=int,
         help="Quality to use for AVIF images (default: 75 - from 0 up to 100)",
     )
@@ -50,29 +38,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--effort",
         default=4,
         type=int,
+        metavar="EFFORT",
         dest="speed",
         help="Effort to use for AVIF images (default: %(default)s - range 0 down to 10)",
     )
     args = parser.parse_args(argv)
 
-    if args.qmin is None and args.qmax is None and args.quality is None:
-        args.quality = 75
-
-    if args.quality is not None and (args.qmin is not None or args.qmax is not None):
-        sys.exit("Can not use both `qmin`/`qmax` and `quality`")
-
-    if args.qmin is not None or args.qmax is not None:
-        warnings.warn(
-            "`qmin`/`qmax` are deprecated, use `quality` instead"
-            " - it will be the only option for future AVIF versions",
-            category=DeprecationWarning,
-        )
-
-    options = {option: value for option, value in vars(args).items() if value is not None}
-
     def optimize(source: Path, target: IO[bytes]) -> None:
         im = Image.open(source)
-        im.save(target, format=im.format, **options)
+        im.save(target, format=im.format, speed=args.speed, quality=args.quality)
 
     success = _optimize_images(args.filenames, optimize, args.threshold)
     return 0 if success else 1

@@ -14,20 +14,6 @@ def images(tmpdir):
     return path, test_file
 
 
-def test_qmin_qmax_deprecated(images):
-    path, _ = images
-    with pytest.deprecated_call():
-        assert main(("-min", "0", str(path))) == 0
-
-
-def test_qmin_qmax_and_quality(images):
-    path, _ = images
-    with pytest.raises(SystemExit) as wrapped_exit:
-        assert main(("-min", "10", "--quality", "20", str(path))) == 1
-    assert wrapped_exit.type == SystemExit
-    assert wrapped_exit.value.code == "Can not use both `qmin`/`qmax` and `quality`"
-
-
 def test_compress_avif(images):
     path, test_file = images
     assert main(("--quality", "75", "-e", "0", str(path))) == 0
