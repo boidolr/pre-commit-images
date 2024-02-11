@@ -74,9 +74,8 @@ endif
 .PHONY: release
 release: test version
 	@echo "Next version: ${NEXT_VERSION}"
-	@sed  -E -e "s/rev: v${CURRENT}/rev: v${NEXT_VERSION}/" -i '' README.md
-	@sed  -E -e "s/VERSION = \"${CURRENT}\"/VERSION = \"${NEXT_VERSION}\"/" -i '' pre_commit_images/__init__.py
-	@git add README.md pre_commit_images/__init__.py
+	@sed  -E -e "s/${CURRENT}/${NEXT_VERSION}/" -i '' README.md pyproject.toml
+	@git add README.md pyproject.toml
 	git commit -m "chore: release version ${NEXT_VERSION}" && git tag "v${NEXT_VERSION}"
 
 

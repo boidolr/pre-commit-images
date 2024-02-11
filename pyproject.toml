@@ -11,7 +11,7 @@ authors = [
 urls = {"Respository" = "https://github.com/boidolr/pre-commit-images"}
 license = {file = "LICENSE"}
 readme = "README.md"
-dynamic = ["version"]
+version = "1.5.2"
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
@@ -50,9 +50,6 @@ optimize-jpg = "pre_commit_images.optimize_jpg:main"
 optimize-png = "pre_commit_images.optimize_png:main"
 optimize-svg = "pre_commit_images.optimize_svg:main"
 optimize-webp = "pre_commit_images.optimize_webp:main"
-
-[tool.setuptools.dynamic]
-version = {attr = "pre_commit_images.VERSION"}
 
 [tool.setuptools]
 packages = ["pre_commit_images"]
