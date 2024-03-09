@@ -23,7 +23,7 @@ repos:
         exclude: ^tests
 
   - repo: https://github.com/boidolr/pre-commit-text
-    rev: v1.2.14
+    rev: v1.2.15
     hooks:
       - id: pretty-format-yaml
         args: [--preserve-quotes]
