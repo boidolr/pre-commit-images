@@ -23,8 +23,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     def optimize(source: Path, target: IO[bytes]) -> None:
-        im = Image.open(source)
-        im.save(target, format=im.format, optimize=True)
+        with Image.open(source) as im:
+            im.save(target, format=im.format, optimize=True)
 
     success = _optimize_images(args.filenames, optimize, args.threshold)
     return 0 if success else 1
