@@ -60,41 +60,23 @@ fix = true
 
 [tool.ruff.lint]
 select = [
-    # Pyflakes
-    "F",
-    # Pycodestyle
-    "E",
-    "W",
-    # pyupgrade
-    "UP",
-    # refurb
-    "FURB",
-    # flake8-bandit
-    "S",
-    # flake8-comprehensions
-    "C4",
-    # flake8-logging-format
-    "G",
-    # flake8-annotations
-    "ANN",
-    # flake8-simplify
-    "SIM",
-    # flake8-pytest-style
-    "PT",
-    # flake8-return
-    "RET",
-    # flake8-use-pathlib
-    "PTH",
-    # flake8-tidy-imports (relative-imports)
-    "TID252",
-    # Perflint
-    "PERF",
-    # flynt
-    "FLY",
-    # isort
-    "I001",
-    # Unneeded noqa
-    "RUF100"
+    "F",        # Pyflakes
+    "E", "W",   # Pycodestyle
+    "UP",       # pyupgrade
+    "FURB",     # refurb
+    "S",        # flake8-bandit
+    "C4",       # flake8-comprehensions
+    "G",        # flake8-logging-format
+    "ANN",      # flake8-annotations
+    "SIM",      # flake8-simplify
+    "PT",       # flake8-pytest-style
+    "RET",      # flake8-return
+    "PTH",      # flake8-use-pathlib
+    "TID252",   # flake8-tidy-imports (relative-imports)
+    "PERF",     # Perflint
+    "FLY",      # flynt
+    "I",        # isort
+    "RUF100"    # Unneeded noqa
 ]
 
 [tool.ruff.lint.per-file-ignores]
