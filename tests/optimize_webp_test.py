@@ -18,32 +18,12 @@ def images(tmpdir):
 def test_compress_webp(images):
     path, test_file = images
 
-    assert (
-        main(
-            (
-                "-q",
-                "10",
-                str(path),
-            )
-        )
-        == 0
-    )
+    assert main(("-q", "10", str(path))) == 0
     assert test_file.stat().st_size > path.stat().st_size
 
 
 def test_compress_webp_below_threshold(images):
     path, test_file = images
 
-    assert (
-        main(
-            (
-                "-q",
-                "90",
-                "-t",
-                "8192",
-                str(path),
-            )
-        )
-        == 0
-    )
+    assert main(("-q", "90", "-t", "8192", str(path))) == 0
     assert test_file.stat().st_size == path.stat().st_size

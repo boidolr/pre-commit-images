@@ -25,14 +25,5 @@ def test_compress_svg(images):
 def test_compress_svg_below_threshold(images):
     path, test_file = images
 
-    assert (
-        main(
-            (
-                "-t",
-                "4096",
-                str(path),
-            )
-        )
-        == 0
-    )
+    assert main(("-t", "4096", str(path))) == 0
     assert test_file.stat().st_size == path.stat().st_size

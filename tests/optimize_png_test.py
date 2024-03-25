@@ -25,14 +25,5 @@ def test_compress_png(images):
 def test_compress_png_below_threshold(images):
     path, test_file = images
 
-    assert (
-        main(
-            (
-                "-t",
-                "15000",
-                str(path),
-            )
-        )
-        == 0
-    )
+    assert main(("-t", "15000", str(path))) == 0
     assert test_file.stat().st_size == path.stat().st_size
