@@ -28,7 +28,7 @@ def _optimize_images(images: Iterable[str], optimizer_fn: Callable[[Path, IO[byt
 
             readable_diff = bytes_to_readable(diff)
             readable_size = bytes_to_readable(source_size)
-            print(f"Optimized {str(source)} by {readable_diff} of {readable_size} ({diff/source_size:.2%})")
+            print(f"Optimized {source} by {readable_diff} of {readable_size} ({diff/source_size:.2%})")
 
     ret = True
     for image in images:
