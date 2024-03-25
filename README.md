@@ -5,7 +5,7 @@ pre-commit-images
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 ================
 
-Git hooks to optimize images based on the [pre-commit](https://github.com/pre-commit/pre-commit) framework. For supported image formats see the list of available hooks below.
+Git hooks to optimize and manipulate images based on the [pre-commit](https://github.com/pre-commit/pre-commit) framework. For supported image formats see the list of available hooks below.
 
 ## Using pre-commit-images with pre-commit
 
@@ -36,6 +36,9 @@ For an extended example see [`.pre-commit-config.yaml`](.pre-commit-config.yaml)
     - `--threshold` can be used to configure which size difference should be used to keep the image.
     - `--lossless` switch to lossless compression.
     - `--quality` can be used to configure quality setting for lossy compression or effort to spend on lossless compression.
+- **`resize`** (experimental): Resize `avif`, `jpeg`, `png` and `webp` images with fixed dimensions. Required options:
+    - `--width` new width of images.
+    - `--height` new height of images.
 
 
 ## References

@@ -34,3 +34,11 @@
     language: python
     entry: optimize-webp
     types: [webp]
+
+  - id: resize
+    name: resize image (experimental)
+    description: Resize image with fixed dimensions.
+    language: python
+    entry: resize
+    types: [avif, jpeg, png, webp]
+    additional_dependencies: [".[avif]"]

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pre_commit_images"
-description = "Some image optimization hooks for pre-commit."
+description = "Image optimization and manipulation with hooks for pre-commit."
 authors = [
   { name="Raphael Boidol", email="boidolr@users.noreply.github.com" },
 ]
@@ -50,6 +50,7 @@ optimize-jpg = "pre_commit_images.optimize_jpg:main"
 optimize-png = "pre_commit_images.optimize_png:main"
 optimize-svg = "pre_commit_images.optimize_svg:main"
 optimize-webp = "pre_commit_images.optimize_webp:main"
+resize = "pre_commit_images.resize:main"
 
 [tool.setuptools]
 packages = ["pre_commit_images"]
