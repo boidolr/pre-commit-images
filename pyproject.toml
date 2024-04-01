@@ -11,7 +11,7 @@ authors = [
 urls = {"Respository" = "https://github.com/boidolr/pre-commit-images"}
 license = {file = "LICENSE"}
 readme = "README.md"
-version = "1.5.2"
+version = "1.6.0"
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
@@ -68,6 +68,7 @@ select = [
     "C4",       # flake8-comprehensions
     "G",        # flake8-logging-format
     "ANN",      # flake8-annotations
+    # "ARG",        # flake8-unused-arguments
     "SIM",      # flake8-simplify
     "PT",       # flake8-pytest-style
     "RET",      # flake8-return
