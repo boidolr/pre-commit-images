@@ -2,7 +2,7 @@ import sys
 from collections.abc import Callable
 from collections.abc import Iterable
 from pathlib import Path
-from tempfile import TemporaryFile
+from tempfile import SpooledTemporaryFile
 from typing import IO
 
 
@@ -32,7 +32,7 @@ def _optimize_images(images: Iterable[str], optimizer: Callable[[Path, IO[bytes]
     ret = True
     for image in images:
         try:
-            with TemporaryFile() as temp:
+            with SpooledTemporaryFile() as temp:
                 image_path = Path(image)
                 optimizer(image_path, temp)
                 keep_smaller_image(image_path, temp)
