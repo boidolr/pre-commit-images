@@ -30,6 +30,8 @@ For an extended example see [`.pre-commit-config.yaml`](.pre-commit-config.yaml)
     - `--quality` can be used to configure quality setting for a JPG image.
 - **`optimize-png`**: Compress `png` images.
     - `--threshold` can be used to configure which size difference should be used to keep the image.
+- **`optimize-gif`**: Compress `png` images.
+    - `--threshold` can be used to configure which size difference should be used to keep the image.
 - **`optimize-svg`**: Compress `svg` images.
     - `--threshold` can be used to configure which size difference should be used to keep the image.
 - **`optimize-webp`**: Compress `webp` images.

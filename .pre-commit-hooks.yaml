@@ -17,8 +17,15 @@
     name: optimize pngs
     description: Check whether pngs can be reencoded to decrease file size.
     language: python
-    entry: optimize-png
+    entry: optimize-plain
     types: [png]
+
+  - id: optimize-gif
+    name: optimize gifs
+    description: Check whether gifs can be reencoded to decrease file size.
+    language: python
+    entry: optimize-plain
+    types: [gif]
 
   - id: optimize-svg
     name: optimize svgs

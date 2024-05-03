@@ -3,7 +3,7 @@ import shutil
 
 import pytest
 
-from pre_commit_images.optimize_png import main
+from pre_commit_images.optimize_plain import main
 
 
 @pytest.fixture()
