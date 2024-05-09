@@ -18,6 +18,16 @@ repos:
       - id: optimize-svg
       - id: optimize-webp
 
+  # possible way to run locally installed tools
+  - repo: local
+    hooks:
+      - id: gifsicle
+        name: gifsicle - local
+        entry: .scripts/gifsicle.sh
+        language: script
+        pass_filenames: true
+        types: [gif]
+
   - repo: https://github.com/boidolr/pre-commit-text
     rev: v1.2.15
     hooks:
