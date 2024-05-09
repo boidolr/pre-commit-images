@@ -7,20 +7,16 @@
 # Update repos:
 # pre-commit autoupdate
 ---
+exclude: ^tests/test\.[a-z]+$
 repos:
   - repo: https://github.com/boidolr/pre-commit-images
     rev: v1.7.0
     hooks:
       - id: optimize-avif
-        exclude: ^tests
       - id: optimize-jpg
-        exclude: ^tests
       - id: optimize-png
-        exclude: ^tests
       - id: optimize-svg
-        exclude: ^tests
       - id: optimize-webp
-        exclude: ^tests
 
   - repo: https://github.com/boidolr/pre-commit-text
     rev: v1.2.15
