@@ -5,7 +5,10 @@ pre-commit-images
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 ================
 
-Git hooks to optimize and manipulate images based on the [pre-commit](https://github.com/pre-commit/pre-commit) framework. For supported image formats see the list of available hooks below.
+Scripts that can work as `it` hooks to optimize and manipulate images.
+These scripts can be called directly or with the provided configration for the [pre-commit](https://github.com/pre-commit/pre-commit) framework.
+For details see below.
+
 
 ## Using pre-commit-images with pre-commit
 
@@ -19,7 +22,7 @@ Add this to your `.pre-commit-config.yaml`:
 ```
 For an extended example see [`.pre-commit-config.yaml`](.pre-commit-config.yaml).
 
-## Available hooks
+### Available hooks
 
 - **`optimize-avif`**: Compress `avif` images.
     - `--threshold` can be used to configure which size difference should be used to keep the image.
@@ -39,6 +42,22 @@ For an extended example see [`.pre-commit-config.yaml`](.pre-commit-config.yaml)
 - **`resize`** (experimental): Resize `avif`, `jpeg`, `png` and `webp` images with fixed dimensions. Required options:
     - `--width` new width of images.
     - `--height` new height of images.
+
+
+## Using scripts directly
+
+Install the package to get access to the scripts defined as command line entry points in [`pyproject.toml`](./pyproject.toml).
+The scripts accept the arguments given for the pre-commit hooks. Additionally they exepect to receive the file names to work on.
+
+An example invocation could be `optimize-avif tests/test.avif`.
+
+Available entry points are identical to the pre-commit hooks:
+- `optimize-avif`
+- `optimize-jpg`
+- `optimize-png`
+- `optimize-svg`
+- `optimize-webp`
+- `resize`
 
 
 ## References
