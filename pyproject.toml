@@ -6,10 +6,10 @@ build-backend = "setuptools.build_meta"
 name = "pre_commit_images"
 description = "Image optimization and manipulation with hooks for pre-commit."
 authors = [
-  { name="Raphael Boidol", email="boidolr@users.noreply.github.com" },
+    { name = "Raphael Boidol", email = "boidolr@users.noreply.github.com" },
 ]
-urls = {"Respository" = "https://github.com/boidolr/pre-commit-images"}
-license = {file = "LICENSE"}
+urls = { "Respository" = "https://github.com/boidolr/pre-commit-images" }
+license = { file = "LICENSE" }
 readme = "README.md"
 version = "1.8.1"
 classifiers = [
@@ -61,24 +61,25 @@ fix = true
 
 [tool.ruff.lint]
 select = [
-    "F",        # Pyflakes
-    "E", "W",   # Pycodestyle
-    "UP",       # pyupgrade
-    "FURB",     # refurb
-    "S",        # flake8-bandit
-    "C4",       # flake8-comprehensions
-    "G",        # flake8-logging-format
-    "ANN",      # flake8-annotations
+    "F",    # Pyflakes
+    "E",
+    "W",    # Pycodestyle
+    "UP",   # pyupgrade
+    "FURB", # refurb
+    "S",    # flake8-bandit
+    "C4",   # flake8-comprehensions
+    "G",    # flake8-logging-format
+    "ANN",  # flake8-annotations
     # "ARG",        # flake8-unused-arguments
-    "SIM",      # flake8-simplify
-    "PT",       # flake8-pytest-style
-    "RET",      # flake8-return
-    "PTH",      # flake8-use-pathlib
-    "TID252",   # flake8-tidy-imports (relative-imports)
-    "PERF",     # Perflint
-    "FLY",      # flynt
-    "I",        # isort
-    "RUF100"    # Unneeded noqa
+    "SIM",    # flake8-simplify
+    "PT",     # flake8-pytest-style
+    "RET",    # flake8-return
+    "PTH",    # flake8-use-pathlib
+    "TID252", # flake8-tidy-imports (relative-imports)
+    "PERF",   # Perflint
+    "FLY",    # flynt
+    "I",      # isort
+    "RUF100", # Unneeded noqa
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -101,9 +102,7 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 addopts = "--mypy --ruff"
-filterwarnings = [
-    "error",
-]
+filterwarnings = ["error"]
 
 [[tool.mypy.overrides]]
 module = "tests.*"
