@@ -10,7 +10,7 @@
 exclude: ^tests/test\.[a-z]+$
 repos:
   - repo: https://github.com/boidolr/pre-commit-images
-    rev: v1.7.0
+    rev: v1.7.1
     hooks:
       - id: optimize-avif
       - id: optimize-jpg
