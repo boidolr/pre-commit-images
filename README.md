@@ -15,7 +15,7 @@ For details see below.
 Add this to your `.pre-commit-config.yaml`:
 ```
     -   repo: https://github.com/boidolr/pre-commit-images
-        rev: v1.7.1  # Use the ref you want to point at
+        rev: v1.8.0  # Use the ref you want to point at
         hooks:
         -   id: optimize-png
         # -   id: ...
