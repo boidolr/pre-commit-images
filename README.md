@@ -5,7 +5,7 @@ pre-commit-images
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 ================
 
-Scripts that can work as `it` hooks to optimize and manipulate images.
+Scripts that can work as `git` hooks to optimize and manipulate images.
 These scripts can be called directly or with the provided configration for the [pre-commit](https://github.com/pre-commit/pre-commit) framework.
 For details see below.
 
