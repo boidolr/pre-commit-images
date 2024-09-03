@@ -7,7 +7,7 @@ from PIL import Image
 from pre_commit_images.resize import main
 
 
-@pytest.fixture()
+@pytest.fixture
 def images(tmpdir):
     image = "test.webp"
     path = pathlib.Path(tmpdir) / image

@@ -6,7 +6,7 @@ import pytest
 from pre_commit_images.optimize_svg import main
 
 
-@pytest.fixture()
+@pytest.fixture
 def images(tmpdir):
     image = "test.svg"
     path = pathlib.Path(tmpdir) / image
