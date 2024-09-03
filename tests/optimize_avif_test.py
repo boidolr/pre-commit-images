@@ -6,7 +6,7 @@ import pytest
 from pre_commit_images.optimize_avif import main
 
 
-@pytest.fixture()
+@pytest.fixture
 def images(tmpdir):
     test_file = pathlib.Path(__file__).parent / "test.avif"
     path = pathlib.Path(tmpdir) / "test.avif"
