@@ -35,7 +35,7 @@ dev = [
     "pre-commit",
     "ruff",
     "tox",
-    "tox-pyenv",
+    "tox-uv",
 ]
 tests = [
     "pytest",
