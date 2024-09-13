@@ -31,14 +31,15 @@ jobs:
     steps:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
 
-      - uses: boidolr/actions/python-pip-env@main
+      - uses: astral-sh/setup-uv@v2
         with:
-          python-version: "${{ matrix.python-version }}"
+          enable-cache: true
+
+      - name: Install Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
 
       - name: Execute tests
-        run: |
-          pip3 install -q tox
-          tox -e py
+        run: uv tool run tox -e ${{ matrix.python-version }}
 
   precommit:
     runs-on: ubuntu-latest
