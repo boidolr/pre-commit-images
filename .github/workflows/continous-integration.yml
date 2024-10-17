@@ -19,12 +19,12 @@ jobs:
   build:
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
         runner: [ubuntu-latest]
         include:
-          - python-version: "3.12"
+          - python-version: "3.13"
             runner: macos-latest
-          - python-version: "3.12"
+          - python-version: "3.13"
             runner: windows-latest
     runs-on: ${{ matrix.runner }}
 
@@ -47,4 +47,4 @@ jobs:
       - uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871 # v4
       - uses: boidolr/actions/run-precommit@main
         env:
-          UV_PYTHON: "3.12"
+          UV_PYTHON: "3.13"
