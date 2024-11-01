@@ -29,7 +29,7 @@ repos:
         types: [gif]
 
   - repo: https://github.com/boidolr/pre-commit-text
-    rev: v1.2.16
+    rev: v1.2.17
     hooks:
       - id: pretty-format-yaml
         args: [--preserve-quotes]
