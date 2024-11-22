@@ -27,6 +27,9 @@ jobs:
           - python-version: "3.13"
             runner: windows-latest
     runs-on: ${{ matrix.runner }}
+    env:
+      # renovate: datasource=github-releases depName=astral-sh/uv
+      UV_VERSION: "0.5.4"
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -34,6 +37,7 @@ jobs:
       - uses: astral-sh/setup-uv@e779db74266a80753577425b0f4ee823649f251d # v3
         with:
           enable-cache: true
+          version: ${{ env.UV_VERSION }}
 
       - name: Install Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }}
