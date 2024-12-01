@@ -1,0 +1,46 @@
+name: Tests
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'pyproject.toml'
+  schedule:
+    - cron: "15 7 */9 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # renovate: datasource=github-releases depName=astral-sh/uv
+      UV_VERSION: "0.5.4"
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+      - uses: astral-sh/setup-uv@e779db74266a80753577425b0f4ee823649f251d # v3
+        with:
+          enable-cache: true
+          version: ${{ env.UV_VERSION }}
+
+      - name: Update lockfile
+        run: uv lock
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if [ -n $(git status -s .gitignore) ]; then
+              echo "::set-output name=value::true"
+          fi
+
+      - name: Push lock changes
+        uses: boidolr/actions/git-push@main
+        if: ${{ steps.changes.outputs.value == 'true' }}
+        with:
+          message: 'chore: update uv.lock'
+          branch: main

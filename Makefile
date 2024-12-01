@@ -60,7 +60,8 @@ endif
 release: test version
 	@echo "Next version: ${NEXT_VERSION}"
 	@sed  -E -e "s/${CURRENT}/${NEXT_VERSION}/" -i '' README.md pyproject.toml
-	@git add README.md pyproject.toml
+	@uv lock
+	@git add README.md pyproject.toml uv.lock
 	git commit -m "chore: release version ${NEXT_VERSION}" && git tag "v${NEXT_VERSION}"
 
 
