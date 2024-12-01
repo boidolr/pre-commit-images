@@ -43,7 +43,7 @@ jobs:
         run: uv python install ${{ matrix.python-version }}
 
       - name: Execute tests
-        run: uv tool run tox -e ${{ matrix.python-version }}
+        run: uv tool run tox --runner virtualenv -e ${{ matrix.python-version }}
 
   precommit:
     runs-on: ubuntu-latest
