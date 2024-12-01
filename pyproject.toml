@@ -108,3 +108,25 @@ filterwarnings = [
 [[tool.mypy.overrides]]
 module = "tests.*"
 disallow_untyped_defs = false
+
+[tool.tox]
+requires = ["tox>=4.19"]
+envlist  = ["py310", "py311", "py312", "py313", "pre-commit"]
+isolated_build = true
+
+[tool.tox.env_run_base]
+description = "Run test under {base_python}"
+commands = [["pytest", { replace = "posargs", default = ["tests"], extend = true }]]
+extras   = ["tests", "svg", "avif"]
+runner = "uv-venv-lock-runner"
+uv_sync_flags = ["--python={env_python}", "--no-editable"]
+
+[tool.tox.env.pre-commit]
+description = "run commit hooks on code base"
+skip_install = true
+deps     = ["pre-commit"]
+commands = [["pre-commit", "run", "--all-files"]]
+runner = "virtualenv"
+
+[tool.tox.env.static]
+commands = [["pytest", "--ignore", "tests"]]
