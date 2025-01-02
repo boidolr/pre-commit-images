@@ -2,7 +2,6 @@
     "extends": [
         "github>boidolr/actions",
         "github>boidolr/actions//presets/actions",
-        "github>boidolr/actions//presets/precommit",
-        ":automergeBranch"
+        "github>boidolr/actions//presets/precommit"
     ]
 }
