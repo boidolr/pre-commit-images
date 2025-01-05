@@ -6,7 +6,7 @@ pre-commit-images
 ================
 
 Scripts that can work as `git` hooks to optimize and manipulate images.
-These scripts can be called directly or with the provided configration for the [pre-commit](https://github.com/pre-commit/pre-commit) framework.
+These scripts can be called directly or with the provided configuration for the [pre-commit](https://github.com/pre-commit/pre-commit) framework.
 For details see below.
 
 
