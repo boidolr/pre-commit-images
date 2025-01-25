@@ -19,17 +19,17 @@ jobs:
   build:
     strategy:
       matrix:
-        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        python-version: ["310", "311", "312", "313"]
         runner: [ubuntu-latest]
         include:
-          - python-version: "3.13"
+          - python-version: "313"
             runner: macos-latest
-          - python-version: "3.13"
+          - python-version: "313"
             runner: windows-latest
     runs-on: ${{ matrix.runner }}
     env:
       # renovate: datasource=github-releases depName=astral-sh/uv
-      UV_VERSION: "0.5.13"
+      UV_VERSION: "0.5.24"
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -46,7 +46,7 @@ jobs:
         run: uv tool install tox --with tox-uv
 
       - name: Execute tests
-        run: tox --runner virtualenv -e ${{ matrix.python-version }}
+        run: tox -e py${{ matrix.python-version }}
 
   precommit:
     runs-on: ubuntu-latest
