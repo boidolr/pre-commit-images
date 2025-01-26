@@ -26,6 +26,8 @@ jobs:
             runner: macos-latest
           - python-version: "313"
             runner: windows-latest
+          - python-version: "313"
+            runner: ubuntu-24.04-arm
     runs-on: ${{ matrix.runner }}
     env:
       # renovate: datasource=github-releases depName=astral-sh/uv
