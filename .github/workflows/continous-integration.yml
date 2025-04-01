@@ -31,7 +31,7 @@ jobs:
     runs-on: ${{ matrix.runner }}
     env:
       # renovate: datasource=github-releases depName=astral-sh/uv
-      UV_VERSION: "0.6.3"
+      UV_VERSION: "0.6.11"
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
