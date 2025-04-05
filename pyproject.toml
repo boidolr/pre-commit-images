@@ -21,7 +21,7 @@ classifiers = [
 
 requires-python = ">=3.10,<4"
 dependencies = [
-    "pillow==11.1.0",
+    "pillow==11.2.1",
 ]
 
 [project.optional-dependencies]
