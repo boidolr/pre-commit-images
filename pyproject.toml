@@ -21,13 +21,11 @@ classifiers = [
 
 requires-python = ">=3.10,<4"
 dependencies = [
-    "pillow==11.1.0",
+    "pillow==11.2.0",
 ]
 
 [project.optional-dependencies]
-avif = [
-    "pillow-avif-plugin==1.4.6",
-]
+avif = []
 svg = [
     "scour==0.38.2",
 ]
@@ -117,7 +115,7 @@ isolated_build = true
 [tool.tox.env_run_base]
 description = "Run test under {base_python}"
 commands = [["pytest", { replace = "posargs", default = ["tests"], extend = true }]]
-extras   = ["tests", "svg", "avif"]
+extras   = ["tests", "svg"]
 runner = "uv-venv-lock-runner"
 uv_sync_flags = ["--no-editable"]
 
