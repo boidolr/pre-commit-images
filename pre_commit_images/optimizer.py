@@ -11,7 +11,7 @@ def _bytes_to_readable(file_size: int) -> str:
         return f"{file_size / (1024 * 1024):.2f}Mb"
 
     if file_size / (1024) > 1:
-        return f"{(file_size/1024):.2f}Kb"
+        return f"{(file_size / 1024):.2f}Kb"
 
     return f"{file_size}b"
 
@@ -27,7 +27,7 @@ def _optimize_images(images: Iterable[str], optimizer: Callable[[Path, IO[bytes]
 
             readable_diff = _bytes_to_readable(diff)
             readable_size = _bytes_to_readable(source_size)
-            print(f"Optimized {source} by {readable_diff} of {readable_size} ({diff/source_size:.2%})")
+            print(f"Optimized {source} by {readable_diff} of {readable_size} ({diff / source_size:.2%})")
 
     ret = True
     for image in images:

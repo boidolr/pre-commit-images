@@ -48,7 +48,7 @@ def test_resize_downscale(images):
     path, test_file = images
     height, width = get_image_size(test_file)
 
-    assert main(("--width", f"{width//2}", "--height", f"{height//2}", str(path))) == 0
+    assert main(("--width", f"{width // 2}", "--height", f"{height // 2}", str(path))) == 0
 
     new_height, new_width = get_image_size(path)
     assert new_height == (height // 2)

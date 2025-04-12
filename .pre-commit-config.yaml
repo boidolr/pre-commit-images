@@ -10,7 +10,7 @@
 exclude: ^tests/test\.[a-z]+$
 repos:
   - repo: https://github.com/boidolr/pre-commit-images
-    rev: v1.8.2
+    rev: v1.8.4
     hooks:
       - id: optimize-avif
       - id: optimize-jpg
@@ -29,13 +29,13 @@ repos:
         types: [gif]
 
   - repo: https://github.com/boidolr/pre-commit-text
-    rev: v1.2.17
+    rev: v1.2.18
     hooks:
       - id: pretty-format-yaml
         args: [--preserve-quotes]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-merge-conflict
       - id: check-yaml
@@ -47,13 +47,13 @@ repos:
         args: [--autofix, --indent=4, --no-sort-keys]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.8
+    rev: v0.11.5
     hooks:
       - id: ruff
         args: [--fix]
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.11.2
+    rev: v1.15.0
     hooks:
       - id: mypy
