@@ -6,7 +6,6 @@
 #
 # Update repos:
 # pre-commit autoupdate
----
 exclude: ^tests/test\.[a-z]+$
 repos:
   - repo: https://github.com/boidolr/pre-commit-images
@@ -28,11 +27,10 @@ repos:
         pass_filenames: true
         types: [gif]
 
-  - repo: https://github.com/boidolr/pre-commit-text
-    rev: v1.2.18
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.16.0
     hooks:
-      - id: pretty-format-yaml
-        args: [--preserve-quotes]
+      - id: yamlfmt
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
