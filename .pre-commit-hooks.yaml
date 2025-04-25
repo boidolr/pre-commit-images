@@ -1,44 +1,44 @@
-  - id: optimize-avif
-    name: optimize avifs
-    description: Check whether avifs can be reencoded to decrease file size.
-    language: python
-    entry: optimize-avif
-    types: [avif]
-    additional_dependencies: [".[avif]"]
+- id: optimize-avif
+  name: optimize avifs
+  description: Check whether avifs can be reencoded to decrease file size.
+  language: python
+  entry: optimize-avif
+  types: [avif]
+  additional_dependencies: [".[avif]"]
 
-  - id: optimize-jpg
-    name: optimize jpgs
-    description: Check whether jpgs can be reencoded to decrease file size.
-    language: python
-    entry: optimize-jpg
-    types: [jpeg]
+- id: optimize-jpg
+  name: optimize jpgs
+  description: Check whether jpgs can be reencoded to decrease file size.
+  language: python
+  entry: optimize-jpg
+  types: [jpeg]
 
-  - id: optimize-png
-    name: optimize pngs
-    description: Check whether pngs can be reencoded to decrease file size.
-    language: python
-    entry: optimize-png
-    types: [png]
+- id: optimize-png
+  name: optimize pngs
+  description: Check whether pngs can be reencoded to decrease file size.
+  language: python
+  entry: optimize-png
+  types: [png]
 
-  - id: optimize-svg
-    name: optimize svgs
-    description: Check whether svgs can be stripped to decrease file size.
-    language: python
-    entry: optimize-svg
-    types: [svg]
-    additional_dependencies: [".[svg]"]
+- id: optimize-svg
+  name: optimize svgs
+  description: Check whether svgs can be stripped to decrease file size.
+  language: python
+  entry: optimize-svg
+  types: [svg]
+  additional_dependencies: [".[svg]"]
 
-  - id: optimize-webp
-    name: optimize webps
-    description: Check whether webps can be reencoded to decrease file size.
-    language: python
-    entry: optimize-webp
-    types: [webp]
+- id: optimize-webp
+  name: optimize webps
+  description: Check whether webps can be reencoded to decrease file size.
+  language: python
+  entry: optimize-webp
+  types: [webp]
 
-  - id: resize
-    name: resize image (experimental)
-    description: Resize image with fixed dimensions.
-    language: python
-    entry: resize
-    types: [avif, jpeg, png, webp]
-    additional_dependencies: [".[avif]"]
+- id: resize
+  name: resize image (experimental)
+  description: Resize image with fixed dimensions.
+  language: python
+  entry: resize
+  types: [avif, jpeg, png, webp]
+  additional_dependencies: [".[avif]"]
