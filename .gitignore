@@ -3,6 +3,7 @@
 *.pyc
 .mypy_cache/
 .ruff_cache/
+.coverage
 .eggs
 .venv
 .tox

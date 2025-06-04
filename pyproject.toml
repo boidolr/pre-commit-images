@@ -39,10 +39,14 @@ dev = [
 ]
 tests = [
     "pytest",
+    "pytest-cov",
     "pytest-clarity",
     "pytest-ruff",
-    "pytest-mypy",
+    "pytest-ty",
 ]
+
+[tool.uv.sources]
+pytest-ty = { git = "https://github.com/boidolr/pytest-ty" }
 
 [project.scripts]
 optimize-avif = "pre_commit_images.optimize_avif:main"
@@ -100,7 +104,8 @@ no_implicit_optional = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-addopts = "--mypy --ruff"
+addopts = "--ty --ruff --cov pre_commit_images --cov-fail-under=80"
+testpaths = "tests"
 filterwarnings = [
     "error",
 ]
