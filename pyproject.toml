@@ -5,11 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "pre_commit_images"
 description = "Image optimization and manipulation with hooks for pre-commit."
-authors = [
-  { name="Raphael Boidol", email="boidolr@users.noreply.github.com" },
-]
-urls = {"Respository" = "https://github.com/boidolr/pre-commit-images"}
-license = {file = "LICENSE"}
+authors = [{ name = "Raphael Boidol", email = "pre-commit@boidol.dev" }]
+urls = { "Respository" = "https://github.com/boidolr/pre-commit-images" }
+license = { file = "LICENSE" }
 readme = "README.md"
 version = "1.8.8"
 classifiers = [
@@ -20,29 +18,13 @@ classifiers = [
 ]
 
 requires-python = ">=3.10,<3.14"
-dependencies = [
-    "pillow==11.2.1",
-]
+dependencies = ["pillow==11.2.1"]
 
 [project.optional-dependencies]
-avif = [
-    "pillow-avif-plugin==1.5.2",
-]
-svg = [
-    "scour==0.38.2",
-]
-dev = [
-    "pre-commit",
-    "ruff",
-    "tox",
-    "tox-uv",
-]
-tests = [
-    "pytest",
-    "pytest-clarity",
-    "pytest-ruff",
-    "pytest-mypy",
-]
+avif = ["pillow-avif-plugin==1.5.2"]
+svg = ["scour==0.38.2"]
+dev = ["pre-commit", "ruff", "tox", "tox-uv"]
+tests = ["pytest", "pytest-cov", "pytest-clarity", "pytest-ruff", "pytest-ty"]
 
 [project.scripts]
 optimize-avif = "pre_commit_images.optimize_avif:main"
@@ -61,24 +43,25 @@ fix = true
 
 [tool.ruff.lint]
 select = [
-    "F",        # Pyflakes
-    "E", "W",   # Pycodestyle
-    "UP",       # pyupgrade
-    "FURB",     # refurb
-    "S",        # flake8-bandit
-    "C4",       # flake8-comprehensions
-    "G",        # flake8-logging-format
-    "ANN",      # flake8-annotations
+    "F",    # Pyflakes
+    "E",
+    "W",    # Pycodestyle
+    "UP",   # pyupgrade
+    "FURB", # refurb
+    "S",    # flake8-bandit
+    "C4",   # flake8-comprehensions
+    "G",    # flake8-logging-format
+    "ANN",  # flake8-annotations
     # "ARG",        # flake8-unused-arguments
-    "SIM",      # flake8-simplify
-    "PT",       # flake8-pytest-style
-    "RET",      # flake8-return
-    "PTH",      # flake8-use-pathlib
-    "TID252",   # flake8-tidy-imports (relative-imports)
-    "PERF",     # Perflint
-    "FLY",      # flynt
-    "I",        # isort
-    "RUF100"    # Unneeded noqa
+    "SIM",    # flake8-simplify
+    "PT",     # flake8-pytest-style
+    "RET",    # flake8-return
+    "PTH",    # flake8-use-pathlib
+    "TID252", # flake8-tidy-imports (relative-imports)
+    "PERF",   # Perflint
+    "FLY",    # flynt
+    "I",      # isort
+    "RUF100", # Unneeded noqa
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -91,40 +74,33 @@ ignore-fully-untyped = true
 force-single-line = true
 order-by-type = false
 
-[tool.mypy]
-check_untyped_defs = true
-disallow_any_generics = true
-disallow_incomplete_defs = true
-disallow_untyped_defs = true
-no_implicit_optional = true
-ignore_missing_imports = true
+[tool.coverage.run]
+core = "sysmon"
 
 [tool.pytest.ini_options]
-addopts = "--mypy --ruff"
+addopts = "--ruff --ty --cov pre_commit_images --cov-fail-under=80"
+testpaths = "tests pre_commit_images"
 filterwarnings = [
     "error",
+    "ignore:sys.monitoring isn't available in this version:coverage.exceptions.CoverageWarning",
 ]
-
-[[tool.mypy.overrides]]
-module = "tests.*"
-disallow_untyped_defs = false
 
 [tool.tox]
 requires = ["tox>=4.19", "tox-uv>=1.19.1"]
-envlist  = ["py310", "py311", "py312", "py313", "pre-commit"]
+envlist = ["py310", "py311", "py312", "py313", "pre-commit"]
 isolated_build = true
 
 [tool.tox.env_run_base]
 description = "Run test under {base_python}"
-commands = [["pytest", { replace = "posargs", default = ["tests"], extend = true }]]
-extras   = ["tests", "svg", "avif"]
+commands = [["pytest", { replace = "posargs", default = [], extend = true }]]
+extras = ["tests", "svg", "avif"]
 runner = "uv-venv-lock-runner"
 uv_sync_flags = ["--no-editable"]
 
 [tool.tox.env.pre-commit]
 description = "run commit hooks on code base"
 skip_install = true
-deps     = ["pre-commit"]
+deps = ["pre-commit"]
 commands = [["pre-commit", "run", "--all-files"]]
 runner = "virtualenv"
 
