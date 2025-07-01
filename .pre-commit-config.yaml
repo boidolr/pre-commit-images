@@ -9,7 +9,7 @@
 exclude: ^tests/test\.[a-z]+$
 repos:
   - repo: https://github.com/boidolr/pre-commit-images
-    rev: v1.8.4
+    rev: v1.9.0
     hooks:
       - id: optimize-avif
       - id: optimize-jpg
@@ -28,7 +28,7 @@ repos:
         types: [gif]
 
   - repo: https://github.com/google/yamlfmt
-    rev: v0.16.0
+    rev: v0.17.2
     hooks:
       - id: yamlfmt
 
@@ -45,7 +45,7 @@ repos:
         args: [--autofix, --indent=4, --no-sort-keys]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.12
+    rev: v0.12.1
     hooks:
       - id: ruff-check
         args: [--fix]

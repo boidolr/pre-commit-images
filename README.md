@@ -50,7 +50,7 @@ Install the package to get access to the scripts defined as command line entry p
 The scripts accept the arguments given for the pre-commit hooks.
 Additionally they exepect to receive the file names to work on.
 
-An example invocation could be `uvx --from 'git+https://github.com/boidolr/pre-commit-images.git[avif]' optimize-avif tests/test.avif`.
+An example invocation could be `uvx --from 'git+https://github.com/boidolr/pre-commit-images.git' optimize-avif tests/test.avif`.
 
 Available entry points are identical to the pre-commit hooks:
 - `optimize-avif`
