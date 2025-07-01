@@ -17,11 +17,10 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 
-requires-python = ">=3.10,<3.14"
-dependencies = ["pillow==11.2.1"]
+requires-python = ">=3.10,<3.15"
+dependencies = ["pillow==11.3.0"]
 
 [project.optional-dependencies]
-avif = ["pillow-avif-plugin==1.5.2"]
 svg = ["scour==0.38.2"]
 dev = ["pre-commit", "ruff", "tox", "tox-uv"]
 tests = ["pytest", "pytest-cov", "pytest-clarity", "pytest-ruff", "pytest-ty"]
@@ -87,13 +86,13 @@ filterwarnings = [
 
 [tool.tox]
 requires = ["tox>=4.19", "tox-uv>=1.19.1"]
-envlist = ["py310", "py311", "py312", "py313", "pre-commit"]
+envlist = ["py310", "py311", "py312", "py313", "py314", "pre-commit"]
 isolated_build = true
 
 [tool.tox.env_run_base]
 description = "Run test under {base_python}"
 commands = [["pytest", { replace = "posargs", default = [], extend = true }]]
-extras = ["tests", "svg", "avif"]
+extras = ["tests", "svg"]
 runner = "uv-venv-lock-runner"
 uv_sync_flags = ["--no-editable"]
 

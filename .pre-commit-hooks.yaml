@@ -4,7 +4,6 @@
   language: python
   entry: optimize-avif
   types: [avif]
-  additional_dependencies: [".[avif]"]
 
 - id: optimize-jpg
   name: optimize jpgs
@@ -41,4 +40,3 @@
   language: python
   entry: resize
   types: [avif, jpeg, png, webp]
-  additional_dependencies: [".[avif]"]
