@@ -2,18 +2,11 @@
 import argparse
 import fractions
 import sys
-import warnings
 from collections.abc import Iterable
 from collections.abc import Sequence
 from pathlib import Path
 
 from PIL import Image
-
-try:
-    import pillow_avif  # noqa: F401
-except ImportError:
-    warnings.warn('Missing `pillow_avif` dependency, install optional "[avif]" dependency group')
-    sys.exit(1)
 
 
 def _resize_images(images: Iterable[str], width: int, height: int) -> bool:

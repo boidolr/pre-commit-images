@@ -19,7 +19,7 @@ jobs:
   build:
     strategy:
       matrix:
-        python-version: ["310", "311", "312", "313"]
+        python-version: ["310", "311", "312", "313", "314"]
         runner: [ubuntu-latest]
         include:
           - python-version: "313"
@@ -31,7 +31,7 @@ jobs:
     runs-on: ${{ matrix.runner }}
     env:
       # renovate: datasource=github-releases depName=astral-sh/uv
-      UV_VERSION: "0.6.11"
+      UV_VERSION: "0.7.17"
 
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
