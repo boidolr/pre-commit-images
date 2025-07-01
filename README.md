@@ -15,7 +15,7 @@ For details see below.
 Add this to your `.pre-commit-config.yaml`:
 ```
     -   repo: https://github.com/boidolr/pre-commit-images
-        rev: v1.8.8  # Use the ref you want to point at
+        rev: v1.9.0  # Use the ref you want to point at
         hooks:
         -   id: optimize-png
         # -   id: ...
@@ -47,7 +47,8 @@ For an extended example see [`.pre-commit-config.yaml`](.pre-commit-config.yaml)
 ## Using scripts directly
 
 Install the package to get access to the scripts defined as command line entry points in [`pyproject.toml`](./pyproject.toml).
-The scripts accept the arguments given for the pre-commit hooks. Additionally they exepect to receive the file names to work on.
+The scripts accept the arguments given for the pre-commit hooks.
+Additionally they exepect to receive the file names to work on.
 
 An example invocation could be `uvx --from 'git+https://github.com/boidolr/pre-commit-images.git[avif]' optimize-avif tests/test.avif`.
 
@@ -65,5 +66,4 @@ Available entry points are identical to the pre-commit hooks:
 These hooks only work because of other projects:
 
 - [PIL](https://github.com/python-pillow/Pillow)
-- [pillow-avif-plugin](https://github.com/fdintino/pillow-avif-plugin)
 - [scour](https://github.com/scour-project/scour)
