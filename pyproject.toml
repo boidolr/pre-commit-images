@@ -41,27 +41,8 @@ line-length = 120
 fix = true
 
 [tool.ruff.lint]
-select = [
-    "F",    # Pyflakes
-    "E",
-    "W",    # Pycodestyle
-    "UP",   # pyupgrade
-    "FURB", # refurb
-    "S",    # flake8-bandit
-    "C4",   # flake8-comprehensions
-    "G",    # flake8-logging-format
-    "ANN",  # flake8-annotations
-    # "ARG",        # flake8-unused-arguments
-    "SIM",    # flake8-simplify
-    "PT",     # flake8-pytest-style
-    "RET",    # flake8-return
-    "PTH",    # flake8-use-pathlib
-    "TID252", # flake8-tidy-imports (relative-imports)
-    "PERF",   # Perflint
-    "FLY",    # flynt
-    "I",      # isort
-    "RUF100", # Unneeded noqa
-]
+select = ["ALL"]
+ignore = ["D", "EXE001", "BLE001", "COM812", "T201"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*.py" = ["S101"]
