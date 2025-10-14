@@ -40,19 +40,10 @@ test: sync
 
 
 ## version       : Show which version is detected
-CURRENT:=$(subst v,,$(shell git describe --abbrev=0 --tags))
-PARTS:=$(subst ., ,$(CURRENT))
-MAJOR:=$(word 1, $(PARTS))
-MINOR:=$(word 2, $(PARTS))
-PATCH:=$(word 3, $(PARTS))
-VERSION:=$(MAJOR).$(MINOR).$(PATCH)
 .PHONY: version
 version:
-ifeq "${CURRENT}" "${VERSION}"
-	@echo "Current version: ${CURRENT}"
-else
-	@echo "Version mismatch: ${CURRENT} != ${VERSION}"
-endif
+	@echo "Current version:"
+	@uv version --short
 
 
 # release        : Use the value of `NEXT_VERSION` to create new release
@@ -67,17 +58,17 @@ release: test version
 
 ## release-patch : Increase patch version in files, commit and tag with git.
 .PHONY: release-patch
-release-patch: NEXT_VERSION:=${MAJOR}.${MINOR}.$$((${PATCH}+1))
+release-patch: NEXT_VERSION:=$$((uv version --dry-run --bump patch --short))
 release-patch: release
 
 
 ## release-minor : Increase minor version in files, commit and tag with git.
 .PHONY: release-minor
-release-minor: NEXT_VERSION:=${MAJOR}.$$((${MINOR}+1)).0
+release-minor: NEXT_VERSION:=$$((uv version --dry-run --bump minor --short))
 release-minor: release
 
 
 ## release-major : Increase major version in files, commit and tag with git.
 .PHONY: release-major
-release-major: NEXT_VERSION:=$$((${MAJOR}+1)).0.0
+release-major: NEXT_VERSION:=$$((uv version --dry-run --bump major --short))
 release-major: release
