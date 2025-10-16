@@ -11,7 +11,7 @@ from .optimizer import _optimize_images
 try:
     from scour import scour
 except ImportError:
-    warnings.warn('Missing `scour` dependency, install optional "[svg]" dependency group')
+    warnings.warn('Missing `scour` dependency, install optional "[svg]" dependency group', stacklevel=2)
     sys.exit(1)
 
 

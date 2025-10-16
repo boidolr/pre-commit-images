@@ -32,7 +32,7 @@ def test_compress_avif_below_threshold(images):
                 "-t",
                 "6144",
                 str(path),
-            )
+            ),
         )
         == 0
     )
