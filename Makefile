@@ -41,13 +41,14 @@ test: sync
 
 ## version       : Show which version is detected
 .PHONY: version
+version: CURRENT:=$(shell uv version --short)
 version:
-	@echo "Current version:"
-	@uv version --short
+	@echo "Current version: ${CURRENT}"
 
 
 # release        : Use the value of `NEXT_VERSION` to create new release
 .PHONY: release
+release: CURRENT:=$(shell uv version --short)
 release: test version
 	@echo "Next version: ${NEXT_VERSION}"
 	@sed  -E -e "s/${CURRENT}/${NEXT_VERSION}/" -i '' README.md pyproject.toml
@@ -58,17 +59,17 @@ release: test version
 
 ## release-patch : Increase patch version in files, commit and tag with git.
 .PHONY: release-patch
-release-patch: NEXT_VERSION:=$$((uv version --dry-run --bump patch --short))
+release-patch: NEXT_VERSION:=$(shell uv version --dry-run --bump patch --short)
 release-patch: release
 
 
 ## release-minor : Increase minor version in files, commit and tag with git.
 .PHONY: release-minor
-release-minor: NEXT_VERSION:=$$((uv version --dry-run --bump minor --short))
+release-minor: NEXT_VERSION:=$(shell uv version --dry-run --bump minor --short)
 release-minor: release
 
 
 ## release-major : Increase major version in files, commit and tag with git.
 .PHONY: release-major
-release-major: NEXT_VERSION:=$$((uv version --dry-run --bump major --short))
+release-major: NEXT_VERSION:=$(shell uv version --dry-run --bump major --short)
 release-major: release
