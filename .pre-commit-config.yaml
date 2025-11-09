@@ -7,6 +7,7 @@
 # Update repos:
 # pre-commit autoupdate
 exclude: ^tests/test\.[a-z]+$
+minimum_pre_commit_version: 4.4.0
 repos:
   - repo: https://github.com/boidolr/pre-commit-images
     rev: v1.9.0
@@ -23,7 +24,7 @@ repos:
       - id: gifsicle
         name: gifsicle - local
         entry: .scripts/gifsicle.sh
-        language: script
+        language: unsupported_script
         pass_filenames: true
         types: [gif]
 
