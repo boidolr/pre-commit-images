@@ -22,7 +22,7 @@ dependencies = ["pillow==12.0.0"]
 
 [project.optional-dependencies]
 svg = ["scour==0.38.2"]
-dev = ["pre-commit", "ruff", "tox", "tox-uv"]
+dev = ["ruff", "ty", "tox", "tox-uv"]
 tests = ["pytest", "pytest-cov", "pytest-clarity", "pytest-ruff", "pytest-ty"]
 
 [project.scripts]
@@ -62,11 +62,11 @@ addopts = "--ruff --ty --cov pre_commit_images --cov-fail-under=80"
 testpaths = "tests pre_commit_images"
 filterwarnings = [
     "error",
-    "ignore:sys.monitoring isn't available in this version:coverage.exceptions.CoverageWarning",
+    "ignore:Can't use core=sysmon. sys.monitoring isn't available in this version:coverage.exceptions.CoverageWarning",
 ]
 
 [tool.tox]
-requires = ["tox>=4.19", "tox-uv>=1.19.1"]
+requires = ["tox>=4.31.0", "tox-uv>=1.29.0"]
 envlist = ["py310", "py311", "py312", "py313", "py314", "py314t", "pre-commit"]
 isolated_build = true
 
@@ -80,8 +80,8 @@ uv_sync_flags = ["--no-editable"]
 [tool.tox.env.pre-commit]
 description = "run commit hooks on code base"
 skip_install = true
-deps = ["pre-commit"]
-commands = [["pre-commit", "run", "--all-files"]]
+deps = ["prek"]
+commands = [["prek", "run", "--all-files"]]
 runner = "virtualenv"
 
 [tool.tox.env.static]
