@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         python-version: ["310", "311", "312", "313", "314", "314t"]
-        runner: [ubuntu-latest]
+        runner: [ubuntu-slim]
         include:
           - python-version: "314"
             runner: macos-latest
