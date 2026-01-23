@@ -22,8 +22,10 @@ dependencies = ["pillow==12.1.0"]
 
 [project.optional-dependencies]
 svg = ["scour==0.38.2"]
+
+[dependency-groups]
 dev = ["ruff", "ty", "tox", "tox-uv"]
-tests = ["pytest", "pytest-cov", "pytest-clarity", "pytest-ruff", "pytest-ty"]
+tests = ["pytest>=9", "pytest-cov", "pytest-clarity", "pytest-ruff", "pytest-ty"]
 
 [project.scripts]
 optimize-avif = "pre_commit_images.optimize_avif:main"
@@ -58,8 +60,8 @@ order-by-type = false
 core = "sysmon"
 
 [tool.pytest.ini_options]
-addopts = "--ruff --ty --cov pre_commit_images --cov-fail-under=80"
-testpaths = "tests pre_commit_images"
+addopts = ["--ruff", "--ty", "--cov=pre_commit_images", "--cov-fail-under=80"]
+testpaths = ["tests", "pre_commit_images"]
 filterwarnings = [
     "error",
     "ignore:Can't use core=sysmon. sys.monitoring isn't available in this version:coverage.exceptions.CoverageWarning",
@@ -73,7 +75,8 @@ isolated_build = true
 [tool.tox.env_run_base]
 description = "Run test under {base_python}"
 commands = [["pytest", { replace = "posargs", default = [], extend = true }]]
-extras = ["tests", "svg"]
+extras = ["svg"]
+dependency_groups = ["tests"]
 runner = "uv-venv-lock-runner"
 uv_sync_flags = ["--no-editable"]
 

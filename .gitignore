@@ -7,4 +7,5 @@
 .eggs
 .venv
 .tox
+.ropeproject
 build
