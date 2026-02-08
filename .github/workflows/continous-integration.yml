@@ -29,27 +29,12 @@ jobs:
           - python-version: "314"
             runner: ubuntu-24.04-arm
     runs-on: ${{ matrix.runner }}
-    env:
-      # renovate: datasource=github-releases depName=astral-sh/uv
-      UV_VERSION: "0.9.28"
-
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6
+      - uses: boidolr/actions/run-tox@main
         with:
-          enable-cache: true
-          cache-suffix: py-${{ matrix.python-version }}
-          version: ${{ env.UV_VERSION }}
-
-      - name: Install Python ${{ matrix.python-version }}
-        run: uv python install ${{ matrix.python-version }}
-
-      - name: Install tox
-        run: uv tool install tox --with tox-uv
-
-      - name: Execute tests
-        run: tox -e py${{ matrix.python-version }}
+          python-version: ${{ matrix.python-version }}
 
   precommit:
     runs-on: ubuntu-latest
@@ -57,4 +42,4 @@ jobs:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
       - uses: boidolr/actions/run-precommit@main
         env:
-          UV_PYTHON: "3.13"
+          UV_PYTHON: "3.14"
