@@ -18,7 +18,7 @@ classifiers = [
 ]
 
 requires-python = ">=3.10,<3.15"
-dependencies = ["pillow==12.1.0"]
+dependencies = ["pillow==12.1.1"]
 
 [project.optional-dependencies]
 svg = ["scour==0.38.2"]
