@@ -31,6 +31,8 @@ jobs:
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
 
       - uses: boidolr/actions/run-tox@ca74fd597b8df679f639f92f60d0478e972a66c0 # main
         with:
@@ -40,6 +42,8 @@ jobs:
     runs-on: ubuntu-slim
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
       - uses: boidolr/actions/run-precommit@ca74fd597b8df679f639f92f60d0478e972a66c0 # main
         env:
           UV_PYTHON: "3.14"
