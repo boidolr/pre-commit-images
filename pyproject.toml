@@ -24,7 +24,7 @@ dependencies = ["pillow==12.2.0"]
 svg = ["scour==0.38.2"]
 
 [dependency-groups]
-dev = ["ruff", "ty", "tox", "tox-uv"]
+dev = ["ruff", "ty", "tox", "tox-uv-bare"]
 tests = ["pytest>=9", "pytest-cov", "pytest-clarity", "pytest-ruff", "pytest-ty"]
 
 [project.scripts]
