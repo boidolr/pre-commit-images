@@ -34,7 +34,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: boidolr/actions/run-tox@55472e5be1c24815f964f5648863c64e937c8cec # main
+      - uses: boidolr/actions/run-tox@17b03aac8f686b27e3ac97778e07d6aa8f5ce946 # main
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -44,6 +44,6 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           persist-credentials: false
-      - uses: boidolr/actions/run-precommit@55472e5be1c24815f964f5648863c64e937c8cec # main
+      - uses: boidolr/actions/run-precommit@17b03aac8f686b27e3ac97778e07d6aa8f5ce946 # main
         env:
           UV_PYTHON: "3.14"
