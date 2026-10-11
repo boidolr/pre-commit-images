@@ -7,7 +7,7 @@ all: format check test version
 
 .PHONY: sync
 sync:
-	@uv sync --all-extras
+	@uv sync --all-extras --all-groups
 
 
 .PHONY: help
@@ -36,7 +36,7 @@ format: sync
 ## test          : Execute tests.
 .PHONY: test
 test: sync
-	uv run --group tests pytest -q
+	uv run --all-extras --all-groups pytest -q
 
 
 ## version       : Show which version is detected
