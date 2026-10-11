@@ -19,15 +19,15 @@ jobs:
   build:
     strategy:
       matrix:
-        python-version: ["310", "311", "312", "313", "314", "314t"]
+        python-version: ["311", "312", "313", "314", "315", "315t"]
         runner: [ubuntu-slim]
         include:
-          - python-version: "314"
+          - python-version: "315"
             runner: macos-latest
-          - python-version: "314"
+          - python-version: "315"
             runner: windows-latest
-          - python-version: "314"
-            runner: ubuntu-24.04-arm
+          - python-version: "315"
+            runner: ubuntu-26.04-arm
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
@@ -46,4 +46,4 @@ jobs:
           persist-credentials: false
       - uses: boidolr/actions/run-precommit@17b03aac8f686b27e3ac97778e07d6aa8f5ce946 # main
         env:
-          UV_PYTHON: "3.14"
+          UV_PYTHON: "3.15"

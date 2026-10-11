@@ -17,7 +17,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
 ]
 
-requires-python = ">=3.10,<3.15"
+requires-python = ">=3.11,<3.16"
 dependencies = ["pillow==12.3.0"]
 
 [project.optional-dependencies]
@@ -72,7 +72,7 @@ filterwarnings = [
 
 [tool.tox]
 requires = ["tox>=4.31.0", "tox-uv>=1.29.0"]
-envlist = ["py310", "py311", "py312", "py313", "py314", "py314t", "pre-commit"]
+envlist = ["py311", "py312", "py313", "py314", "py315", "py315t", "pre-commit"]
 isolated_build = true
 
 [tool.tox.env_run_base]

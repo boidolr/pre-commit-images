@@ -30,7 +30,7 @@ def _resize_images(images: Iterable[str], width: int, height: int) -> bool:
     for image in images:
         try:
             resize_image(Path(image))
-        except Exception as exc:  # noqa: PERF203
+        except Exception as exc:
             print(
                 f"Failed to resize {image} ({exc})",
                 file=sys.stderr,
